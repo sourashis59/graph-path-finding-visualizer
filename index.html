@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/buttonStyles.css">
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class="mainContainer">
+
+    <div class="headerContainer">
+        <h1 id = "header">Graph Path Finding Visualizer</h1>
+
+        <div class="inputContainer">
+            <div id="gridSizeInputContainer">
+                <p>Grid Size : </p>
+                <input type="range" class="canBeDisabled" id="gridSizeInput" min=5 max=50 step=1 value=40>
+            </div>
+
+            <div id="speedInputContainer">
+                <p>Speed : </p>
+                <input type="range" class="canBeDisabled" id="speedInput" min=1 max=50 step=1 value=30>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="bodyContainer">
+    
+        <div class="buttonSidebarContainer">
+            <p>Button sidebar container</p>
+
+            <div class="button canBeDisabled "  id="findPathButton">
+                <p>Find Path</p>
+            </div>
+
+            <div class="button "  id="resetButton">
+                <p>Reset</p>
+            </div>
+        </div>
+    
+        <div class="gridOuterContainer">
+    
+    
+                <div class="detailsContainer">
+                    Algorithm Details
+                </div>
+    
+    
+                <div class="gridContainer">
+                    <table class="gridTable">
+                    </table>
+                </div>
+    
+    
+        </div>
+    </div>
+</div>
+
+    <script src="script/dataStructures/linkedList.js"></script>
+    <script src="script/dataStructures/queue.js"></script>
+
+    <script src="script/helperFunctions.js"></script>
+    <script src="script/visualize/visualize.js"></script>
+    <script src="script/algorithms/visualizePath.js"></script>
+    <script src="script/main.js"></script>
+    <script src="script/handleButton.js"></script>
+    <script src="script/algorithms/bfsFindPath.js"></script>
+    <script src="script/algorithms/dfsFindPath.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,155 @@
+:root {
+    --enqueuedCell: rgb(85, 176, 218);
+    --visitedCellColor: rgb(182, 233, 233);
+    --cellInPathColor: yellow;
+    --blockedCellColor: rgb(8, 8, 131);
+    --cellBorderColor: rgb(59, 175, 184);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    font-size: 3rem;
+}
+
+.mainContainer {
+    /* background-color: darkcyan; */
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.headerContainer {
+    /* background-color: rebeccapurple; */
+    height: 9%;
+
+    display: flex;
+
+    background-image: url(../media/headerBackground2.png);
+
+    text-align: center;
+}
+
+#header {
+    height: 100%;
+    /* background-color: aqua; */
+    color: white;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 3.5rem;
+    padding: 1.5rem;
+    padding-left: 2rem;
+    text-align: left;
+    font-weight: 700;
+}
+
+.inputContainer {
+    padding: 1.5rem;
+    color: white;
+    font-size: 2.5rem;
+
+    display: flex;
+
+    font-family: "Raleway", sans-serif;
+}
+
+#gridSizeInputContainer {
+    padding-left: 2rem;
+    padding-right: 3rem;
+}
+
+#speedInputContainer {
+    padding-right: 3rem;
+}
+
+.bodyContainer {
+    flex: 1;
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.buttonSidebarContainer {
+    background-color: azure;
+    width: 10%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.gridOuterContainer {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+
+    /* background-color: brown; */
+    display: flex;
+    flex-direction: column;
+}
+
+.detailsContainer {
+    background-color: burlywood;
+    height: 8%;
+}
+
+.gridContainer {
+    flex: 1;
+    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    /* background-color: yellow; */
+
+    display: flex;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+tbody {
+    width: 100%;
+}
+
+.gridRow {
+    background-color: coral;
+    flex: 1;
+
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.gridCell {
+    background-color: white;
+    border: 0.01rem solid var(--cellBorderColor);
+}
+
+.emptyCell {
+    background-color: white;
+}
+
+.blockedCell {
+    background-color: var(--blockedCellColor);
+}
+
+.sourceCell {
+    background-color: green;
+}
+
+.destCell {
+    background-color: brown;
+}
