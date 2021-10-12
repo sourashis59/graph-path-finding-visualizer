@@ -43,13 +43,64 @@
             <div class="button "  id="resetButton">
                 <p>Reset</p>
             </div>
+
+
+
+
+            <div id="selectAlgorithmButton" class = "dropdownButtonContainer">
+                
+                            <div class=" button"><p>Select Algorithm</p></div>
+                            <ul class="dropdown hiddenDropdown">
+                                <div class="dropdown-item" id = "BFS_BUTTON">BFS</div>
+                                <div class="dropdown-item" id = "DFS_BUTTON">DFS</div>
+                                <div class="dropdown-item" id = "DIJKSTRA_BUTTON">Dijkstra</div>
+                                <div class="dropdown-item" id = "A_STAR_BUTTON">A Star</div>
+                            </ul>
+            </div>
+
+
+
+
+
+            <div id="selectMazeButton" class="dropdownButtonContainer">
+            
+                <div class="button">
+                    <p>Generate Maze</p>
+                </div>
+                <ul class="dropdown hiddenDropdown">
+                    <div class="dropdown-item">Maze 1</div>
+                    <div class="dropdown-item">Maze 2</div>
+                    <div class="dropdown-item">Maze 3</div>
+                    <div class="dropdown-item">Maze 4</div>
+                </ul>
+            </div>
+
+
+
+            <div class="statusContainer">
+                <p id="statusHeader">Status:</p>
+                <p id="statusText">Path Not Found</p>
+
+                <div class="statusImageContainer">
+                    <img class="statusImage hidden" src="media/sedcat.png" alt="">
+                    <img class="statusImage" src="media/crying.gif" alt="">
+
+                </div>
+                
+
+            </div>
+
         </div>
+
+
+
+
     
         <div class="gridOuterContainer">
     
     
                 <div class="detailsContainer">
-                    Algorithm Details
+                    <p>Algorithm Details</p>
                 </div>
     
     

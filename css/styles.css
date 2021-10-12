@@ -10,6 +10,8 @@
     margin: 0;
     padding: 0;
     box-sizing: inherit;
+
+    text-decoration: none;
 }
 
 html {
@@ -110,8 +112,18 @@ body {
 }
 
 .detailsContainer {
-    background-color: burlywood;
-    height: 8%;
+    /* background-color: burlywood; */
+    height: 6%;
+}
+
+.detailsContainer > p {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    margin-top: 0.8rem;
+    margin-bottom: auto;
+    text-align: center;
+
+    font-size: 2.5rem;
 }
 
 .gridContainer {
