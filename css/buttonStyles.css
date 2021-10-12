@@ -1,20 +1,38 @@
 .button {
     /* height: 20%; */
     width: 80%;
-    border: 0.3rem solid black;
-    margin: 2rem;
+    border: 0.3rem solid white;
+    margin: 0.5rem;
     padding: 1rem;
-    color: black;
-    background-color: yellow;
+    color: white;
+
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+
+    font-family: Phantomsans, sans-serif;
+
+    justify-content: center;
+
+    border-radius: 2rem;
+}
+
+.button p {
+    font-size: 2rem;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 800;
 }
 
 .button:hover {
     cursor: pointer;
-}
 
-.button p {
-    font-size: 2.3rem;
-    text-align: center;
-    font-family: "Courier New", Courier, monospace;
-    font-weight: 800;
+    transform: translateY(-0.1rem);
+
+    color: orange;
+    border: 0.3rem solid orange;
+
+    background-image: linear-gradient(144deg, #063d17, #0e676d 50%, #e9b3e0);
 }
