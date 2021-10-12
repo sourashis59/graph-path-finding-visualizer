@@ -43,6 +43,8 @@ body {
     background-image: url(../media/headerBackground2.png);
 
     text-align: center;
+
+    border-bottom: 0.2rem solid white;
 }
 
 #header {
@@ -60,7 +62,7 @@ body {
 .inputContainer {
     padding: 1.5rem;
     color: white;
-    font-size: 2.5rem;
+    font-size: 2rem;
 
     display: flex;
 
@@ -86,6 +88,11 @@ body {
 
 .buttonSidebarContainer {
     background-color: azure;
+
+    background-image: url(../media/sidebar8.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+
     width: 10%;
 
     display: flex;
