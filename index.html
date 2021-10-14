@@ -37,11 +37,11 @@
             <!-- <p>Button sidebar container</p> -->
 
             <div class=" button canBeDisabled "  id="findPathButton">
-                <p>Find Path</p>
+                Find Path
             </div>
 
             <div class="button "  id="resetButton">
-                <p>Reset</p>
+                Reset
             </div>
 
 
@@ -49,8 +49,8 @@
 
             <div id="selectAlgorithmButton" class = "dropdownButtonContainer">
                 
-                            <div class=" button"><p>Select Algorithm</p></div>
-                            <ul class="dropdown hiddenDropdown">
+                            <div class=" button">Select Algorithm</div>
+                            <ul class="dropdown hiddenDropdown" id = "selectAlgorithmDropdown">
                                 <div class="dropdown-item" id = "BFS_BUTTON">BFS</div>
                                 <div class="dropdown-item" id = "DFS_BUTTON">DFS</div>
                                 <div class="dropdown-item" id = "DIJKSTRA_BUTTON">Dijkstra</div>
@@ -63,9 +63,8 @@
 
 
             <div id="selectMazeButton" class="dropdownButtonContainer">
-            
                 <div class="button">
-                    <p>Generate Maze</p>
+                    Generate Maze
                 </div>
                 <ul class="dropdown hiddenDropdown">
                     <div class="dropdown-item">Maze 1</div>
@@ -79,11 +78,15 @@
 
             <div class="statusContainer">
                 <p id="statusHeader">Status:</p>
-                <p id="statusText">Path Not Found</p>
+                <p id="statusText">Chilling</p>
 
                 <div class="statusImageContainer">
-                    <img class="statusImage hidden" src="media/sedcat.png" alt="">
-                    <img class="statusImage" src="media/crying.gif" alt="">
+                    <img id = "pathFoundImage" class="statusImage hidden" src="media/sedcat.png" alt="">
+
+                    <img id = "pathNotFoundImage" class="statusImage hidden" src="media/crying.gif" alt="">
+
+                    <img id="algorithmNotSelectedImage" class="statusImage hidden" src="media/pizzacat.jpg" alt="">
+
 
                 </div>
                 
@@ -100,7 +103,7 @@
     
     
                 <div class="detailsContainer">
-                    <p>Algorithm Details</p>
+                    Algorithm Details
                 </div>
     
     
@@ -114,6 +117,7 @@
     </div>
 </div>
 
+    <script src="script/handleDropdown.js"></script>
     <script src="script/dataStructures/linkedList.js"></script>
     <script src="script/dataStructures/queue.js"></script>
 

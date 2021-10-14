@@ -17,9 +17,7 @@
     justify-content: center;
 
     border-radius: 2rem;
-}
 
-.button p {
     font-size: 1.7rem;
     text-align: center;
     font-family: "Courier New", Courier, monospace;
@@ -129,8 +127,8 @@
 
 .statusImage {
     margin-top: 1rem;
-    height: 5%;
-    width: 90%;
+    height: 4%;
+    width: 80%;
 }
 
 .hidden {

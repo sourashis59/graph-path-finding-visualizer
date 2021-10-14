@@ -114,9 +114,7 @@ body {
 .detailsContainer {
     /* background-color: burlywood; */
     height: 6%;
-}
 
-.detailsContainer > p {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
     margin-top: 0.8rem;

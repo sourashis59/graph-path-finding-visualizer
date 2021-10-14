@@ -1,3 +1,6 @@
+let statusImageContainer = document.querySelector(".statusImageContainer");
+let statusText = document.querySelector("#statusText").innerHTML;
+
 function isSourceCell(cellDiv) {
     if (cellDiv.classList.contains("sourceCell")) return true;
     else return false;
@@ -118,6 +121,23 @@ function resetDelayTime() {
     netDelay = 0;
 }
 
+function resetStatus() {
+    document.querySelector("#statusText").innerHTML = "Chilling";
+
+    // console.log(statusImageContainer);
+
+    let statusImageContainerChildren =
+        statusImageContainer.querySelectorAll("img");
+
+    // console.log(statusImageContainerChildren);
+
+    for (let i = 0; i < statusImageContainerChildren.length; i++) {
+        // console.log(statusImageContainerChildren[i]);
+
+        statusImageContainerChildren[i].classList.add("hidden");
+    }
+}
+
 function resetAll() {
     //clear timeouts
     for (let i = 0; i < timeOutIds.length; i++) clearTimeout(timeOutIds[i]);
@@ -136,6 +156,8 @@ function resetAll() {
 
     mouseIsPressed = false;
     pathFindingGoingOn = false;
+
+    resetStatus();
 }
 
 function updateGridSize() {
@@ -156,4 +178,113 @@ function endPathFinding() {
         pathFindingGoingOn = false;
         console.log("path finding function finished");
     }, (netDelay += delayTime));
+}
+
+function updateStatus(status) {
+    let id = setTimeout(
+        function () {
+            //*update status text and image
+
+            let statusImageContainerChildren =
+                statusImageContainer.querySelectorAll("img");
+
+            resetStatus();
+
+            switch (status) {
+                case "pathFound":
+                    document.querySelector("#statusText").innerHTML =
+                        "Path Found :)";
+
+                    for (
+                        let i = 0;
+                        i < statusImageContainerChildren.length;
+                        i++
+                    ) {
+                        // console.log(statusImageContainerChildren[i]);
+
+                        if (
+                            statusImageContainerChildren[i].id ===
+                            "pathFoundImage"
+                        ) {
+                            statusImageContainerChildren[i].classList.remove(
+                                "hidden"
+                            );
+                            break;
+                        }
+                    }
+
+                    break;
+
+                case "pathNotFound":
+                    document.querySelector("#statusText").innerHTML =
+                        "Path NOT Found :(";
+
+                    for (
+                        let i = 0;
+                        i < statusImageContainerChildren.length;
+                        i++
+                    ) {
+                        // console.log(statusImageContainerChildren[i]);
+
+                        if (
+                            statusImageContainerChildren[i].id ===
+                            "pathNotFoundImage"
+                        ) {
+                            statusImageContainerChildren[i].classList.remove(
+                                "hidden"
+                            );
+
+                            let id1 = setTimeout(function () {
+                                statusImageContainerChildren[i].classList.add(
+                                    "hidden"
+                                );
+                            }, 7000);
+
+                            break;
+                        }
+                    }
+
+                    break;
+
+                case "algorithmNotSelected":
+                    document.querySelector("#statusText").innerHTML =
+                        "Select an algorithm :|";
+
+                    for (
+                        let i = 0;
+                        i < statusImageContainerChildren.length;
+                        i++
+                    ) {
+                        // console.log(statusImageContainerChildren[i]);
+
+                        if (
+                            statusImageContainerChildren[i].id ===
+                            "algorithmNotSelectedImage"
+                        ) {
+                            statusImageContainerChildren[i].classList.remove(
+                                "hidden"
+                            );
+                            break;
+                        }
+                    }
+
+                    break;
+
+                case "findingPath":
+                    document.querySelector("#statusText").innerHTML =
+                        "Finding path...";
+
+                    break;
+
+                default:
+                    alert("error in updating status");
+            }
+
+            console.log(statusText);
+        },
+
+        (netDelay += delayTime)
+    );
+
+    timeOutIds.push(id);
 }

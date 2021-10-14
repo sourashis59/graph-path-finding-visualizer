@@ -18,7 +18,7 @@ let delayTime = 10;
 let netDelay = 0;
 let timeOutIds = [];
 
-let selectedAlgo = "BFS";
+let selectedAlgo = "None";
 
 //Directions we can move : up , down, left ,right
 const directions = [
@@ -113,6 +113,7 @@ function drawGrids() {
             "mouseenter",
             handleGridCellMouseEnter
         );
+
         gridCellList[i].addEventListener("mouseup", handleGridCellOnMouseUp);
     }
 }
@@ -122,12 +123,54 @@ function findPathFunction() {
 
     if (!pathFindingGoingOn) {
         pathFindingGoingOn = true;
-        returnedObj = BFS_FindPath();
 
-        if (returnedObj.destFound) {
-            visualizePath(returnedObj.parent, sourceRowColumn, destRowColumn);
-        } else {
-            console.log("dest not found");
+        switch (selectedAlgo) {
+            case "BFS_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = BFS_FindPath();
+                break;
+
+            case "DFS_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = DFS_FindPath();
+                break;
+
+            case "DIJKSTRA_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = DIJKSTRA_FindPath();
+                break;
+
+            case "A_STAR_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = A_STAR_FindPath();
+                break;
+
+            case "None":
+                updateStatus("algorithmNotSelected");
+
+                break;
+
+            default:
+                alert("error in selecting algorithm");
+        }
+
+        if (selectedAlgo !== "None") {
+            if (returnedObj.destFound) {
+                visualizePath(
+                    returnedObj.parent,
+                    sourceRowColumn,
+                    destRowColumn
+                );
+
+                updateStatus("pathFound");
+            } else {
+                console.log("dest not found");
+                updateStatus("pathNotFound");
+            }
         }
 
         endPathFinding();
