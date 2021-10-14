@@ -9,7 +9,9 @@ const canBeDisabledButtons = document.querySelectorAll(".canBeDisabled");
 //*Event handlers_____________________________________________________________
 
 const handleFindPathButtonClick = function (e) {
-    findPathFunction();
+    if (!e.target.classList.contains("disabledButton")) {
+        findPathFunction();
+    }
 };
 
 function handleResetButton() {
@@ -19,13 +21,6 @@ function handleResetButton() {
     drawGrids();
 }
 
-function handleDisabledButtonsMouseover(e) {
-    let cellDiv = e.target;
-
-    if (cellDiv.classList.contains("canBeDisabled") && pathFindingGoingOn)
-        cellDiv.style.cursor = "not-allowed";
-}
-
 //*Event listners______________________________________________________________
 
 findPathButton.addEventListener("click", handleFindPathButtonClick);
@@ -33,10 +28,3 @@ findPathButton.addEventListener("click", handleFindPathButtonClick);
 resetButton.addEventListener("click", handleResetButton);
 
 gridSizeInputElement.addEventListener("input", updateGridSize);
-
-for (let i = 0; i < canBeDisabledButtons.length; i++) {
-    canBeDisabledButtons[i].addEventListener(
-        "mouseover",
-        handleDisabledButtonsMouseover
-    );
-}

@@ -13,10 +13,12 @@ let rowSize = Number(gridSizeInputElement.value);
 let columnSize = Math.floor(rowSize * (15 / 7));
 
 let pathFindingGoingOn = false;
+let buttonsAllowed = true;
 
 let delayTime = 10;
 let netDelay = 0;
 let timeOutIds = [];
+let endPathFindingTimeOutID;
 
 let selectedAlgo = "None";
 
@@ -121,8 +123,12 @@ function drawGrids() {
 function findPathFunction() {
     let returnedObj;
 
-    if (!pathFindingGoingOn) {
+    if (selectedAlgo === "None") {
+        updateStatus("algorithmNotSelected");
+    } else if (!pathFindingGoingOn) {
         pathFindingGoingOn = true;
+        buttonsAllowed = false;
+        disableButtons();
 
         switch (selectedAlgo) {
             case "BFS_BUTTON":
@@ -149,28 +155,17 @@ function findPathFunction() {
                 returnedObj = A_STAR_FindPath();
                 break;
 
-            case "None":
-                updateStatus("algorithmNotSelected");
-
-                break;
-
             default:
                 alert("error in selecting algorithm");
         }
 
-        if (selectedAlgo !== "None") {
-            if (returnedObj.destFound) {
-                visualizePath(
-                    returnedObj.parent,
-                    sourceRowColumn,
-                    destRowColumn
-                );
+        if (returnedObj.destFound) {
+            visualizePath(returnedObj.parent, sourceRowColumn, destRowColumn);
 
-                updateStatus("pathFound");
-            } else {
-                console.log("dest not found");
-                updateStatus("pathNotFound");
-            }
+            updateStatus("pathFound");
+        } else {
+            console.log("dest not found");
+            updateStatus("pathNotFound");
         }
 
         endPathFinding();
@@ -188,7 +183,8 @@ function handleGridCellOnMouseDown(e) {
     if (
         !isSourceCell(cellDiv) &&
         !isDestinationCell(cellDiv) &&
-        !pathFindingGoingOn
+        !pathFindingGoingOn &&
+        buttonsAllowed
     )
         toggleCellBlock(cellDiv);
 }
@@ -201,7 +197,8 @@ function handleGridCellMouseEnter(e) {
         mouseIsPressed &&
         !isSourceCell(cellDiv) &&
         !isDestinationCell(cellDiv) &&
-        !pathFindingGoingOn
+        !pathFindingGoingOn &&
+        buttonsAllowed
     )
         toggleCellBlock(cellDiv);
 }

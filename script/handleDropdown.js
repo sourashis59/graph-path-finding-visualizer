@@ -25,15 +25,17 @@ function hideAllDropdownExceptGiven(givenDropdown) {
 }
 
 function handleDropdownButtonClick(e) {
-    e.stopPropagation();
+    if (!e.target.classList.contains("disabledButton")) {
+        e.stopPropagation();
 
-    let butt = e.target;
-    let dropdownContent = butt.parentNode.querySelector(".dropdown");
-    // console.log(dropdownContent);
+        let butt = e.target;
+        let dropdownContent = butt.parentNode.querySelector(".dropdown");
+        // console.log(dropdownContent);
 
-    hideAllDropdownExceptGiven(dropdownContent);
+        hideAllDropdownExceptGiven(dropdownContent);
 
-    dropdownContent.classList.toggle("hiddenDropdown");
+        dropdownContent.classList.toggle("hiddenDropdown");
+    }
 }
 
 function handleWindowObjectClickDropdown(e) {
@@ -59,6 +61,7 @@ function handleWindowObjectClickDropdown(e) {
 
 function handleSelectAlgorithmDropdownClick(e) {
     // console.log(e.target.id);
+    if (e.target.classList.contains("disabledButton")) return;
 
     selectedAlgo = e.target.id;
 

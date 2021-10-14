@@ -139,6 +139,9 @@ function resetStatus() {
 }
 
 function resetAll() {
+    //Important to ignore bug : First priority is to clear the endPathFinding timout
+    if (endPathFindingTimeOutID) clearTimeout(endPathFindingTimeOutID);
+
     //clear timeouts
     for (let i = 0; i < timeOutIds.length; i++) clearTimeout(timeOutIds[i]);
 
@@ -158,6 +161,10 @@ function resetAll() {
     pathFindingGoingOn = false;
 
     resetStatus();
+
+    buttonsAllowed = true;
+
+    enableButtons();
 }
 
 function updateGridSize() {
@@ -174,7 +181,7 @@ function updateSpeed() {
 }
 
 function endPathFinding() {
-    let id = setTimeout(function () {
+    endPathFindingTimeOutID = setTimeout(function () {
         pathFindingGoingOn = false;
         console.log("path finding function finished");
     }, (netDelay += delayTime));
@@ -287,4 +294,22 @@ function updateStatus(status) {
     );
 
     timeOutIds.push(id);
+}
+
+function disableButtons() {
+    const canBeDisabledButtons = document.querySelectorAll(".canBeDisabled");
+
+    for (let i = 0; i < canBeDisabledButtons.length; i++) {
+        canBeDisabledButtons[i].classList.add("disabledButton");
+        canBeDisabledButtons[i].disabled = true;
+    }
+}
+
+function enableButtons() {
+    const canBeDisabledButtons = document.querySelectorAll(".canBeDisabled");
+
+    for (let i = 0; i < canBeDisabledButtons.length; i++) {
+        canBeDisabledButtons[i].classList.remove("disabledButton");
+        canBeDisabledButtons[i].disabled = false;
+    }
 }

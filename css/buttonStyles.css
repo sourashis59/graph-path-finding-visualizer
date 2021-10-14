@@ -134,3 +134,14 @@
 .hidden {
     display: none;
 }
+
+.disabledButton {
+    cursor: not-allowed;
+
+    background-image: none;
+    background-color: red;
+}
+
+.disabledButton:hover {
+    cursor: not-allowed;
+}
