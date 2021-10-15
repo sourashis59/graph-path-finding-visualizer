@@ -78,14 +78,14 @@ function getRowColumn(cellDiv) {
 
 function getSourceRowColumn() {
     let rowNo = Math.floor(rowSize / 2);
-    let columnNo = Math.floor(columnSize / 3);
+    let columnNo = Math.floor(columnSize / 5);
 
     return { row: rowNo, column: columnNo };
 }
 
 function getDestinationRowColumn() {
     let rowNo = Math.floor(rowSize / 2);
-    let columnNo = Math.floor((2 * columnSize) / 3);
+    let columnNo = Math.floor((4 * columnSize) / 5);
 
     return { row: rowNo, column: columnNo };
 }
@@ -117,6 +117,18 @@ function toggleCellBlock(cellDiv) {
     else makeCellBlocked(cellDiv);
 }
 
+function clearBlockedCells() {
+    for (let i = 0; i < rowSize; i++) {
+        for (let j = 0; j < columnSize; j++) {
+            if (
+                !(i === sourceRowColumn.row && j === sourceRowColumn.column) &&
+                !(i === destRowColumn.row && j === destRowColumn.column)
+            ) {
+                makeCellEmpty(gridDiv[i][j]);
+            }
+        }
+    }
+}
 function resetDelayTime() {
     netDelay = 0;
 }
@@ -313,3 +325,9 @@ function enableButtons() {
         canBeDisabledButtons[i].disabled = false;
     }
 }
+
+//retuns random integer within range [lowRange, highRange)
+const getRandomInt = function (lowRange, highRange) {
+    let diff = highRange - lowRange;
+    return lowRange + Math.floor(Math.random() * diff);
+};

@@ -13,6 +13,8 @@ let selectAlgorithmDropdown = document.querySelector(
     "#selectAlgorithmDropdown"
 );
 
+const generateMazeDropdown = document.querySelector("#generateMazeDropdown");
+
 const selectAlgorithmButton = document.querySelector("#selectAlgorithmButton");
 
 //*event handlers
@@ -105,6 +107,25 @@ function handleSelectAlgorithmDropdownClick(e) {
     }
 }
 
+function handleGenerateMazeDropdownClick(e) {
+    if (e.target.classList.contains("disabledButton")) return;
+
+    selectedMaze = e.target.id;
+
+    switch (selectedMaze) {
+        case "simpleRandomMaze":
+            simpleRandomMaze();
+
+            break;
+
+        default:
+            // alert("error in selecting algorithm");
+            e.stopPropagation();
+
+            break;
+    }
+}
+
 //*event listners
 
 window.addEventListener("click", handleWindowObjectClickDropdown);
@@ -126,3 +147,5 @@ selectAlgorithmDropdown.addEventListener(
     "click",
     handleSelectAlgorithmDropdownClick
 );
+
+generateMazeDropdown.addEventListener("click", handleGenerateMazeDropdownClick);

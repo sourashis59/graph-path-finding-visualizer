@@ -113,7 +113,7 @@
     font-size: 3rem;
     font-weight: 600;
     text-align: center;
-    color: yellow;
+    color: white;
 }
 
 #statusHeader {
@@ -144,4 +144,7 @@
 
 .disabledButton:hover {
     cursor: not-allowed;
+    background-image: none;
+    background-color: rgb(138, 8, 40);
+    color: black;
 }
