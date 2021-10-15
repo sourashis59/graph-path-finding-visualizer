@@ -2,9 +2,16 @@ function recursiveDivisionMaze() {
     clearBlockedCells();
 
     let minWidth = (minHeight = 3);
+    for (let j = 0; j < columnSize; j++) makeCellBlocked(gridDiv[0][j]);
+    for (let i = 1; i < rowSize; i++)
+        makeCellBlocked(gridDiv[i][columnSize - 1]);
+    for (let j = columnSize - 2; j >= 0; j--)
+        makeCellBlocked(gridDiv[rowSize - 1][j]);
+    for (let i = rowSize - 2; i >= 1; i--) makeCellBlocked(gridDiv[i][0]);
 
-    let topLeftCell = { row: 0, column: 0 };
-    let bottomRightCell = { row: rowSize - 1, column: columnSize - 1 };
+    let topLeftCell = { row: 1, column: 1 };
+    let bottomRightCell = { row: rowSize - 2, column: columnSize - 2 };
+
     recursiveDivisionMaze_helper(topLeftCell, bottomRightCell, "vertical");
 
     //*_____________________________________________NESTED FUNCTION DEFINITIONS___________________________________________
