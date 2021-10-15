@@ -15,7 +15,7 @@ let columnSize = Math.floor(rowSize * (15 / 7));
 let pathFindingGoingOn = false;
 let buttonsAllowed = true;
 
-let delayTime = 10;
+let delayTime = 3;
 let netDelay = 0;
 let timeOutIds = [];
 let endPathFindingTimeOutID;

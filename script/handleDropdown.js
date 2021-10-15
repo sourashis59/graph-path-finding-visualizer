@@ -118,6 +118,11 @@ function handleGenerateMazeDropdownClick(e) {
 
             break;
 
+        case "recursiveDivisionMaze":
+            recursiveDivisionMaze();
+
+            break;
+
         default:
             // alert("error in selecting algorithm");
             e.stopPropagation();

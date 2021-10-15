@@ -103,12 +103,13 @@ function makeCellBlocked(cellDiv) {
 }
 
 function makeCellEmpty(cellDiv) {
+    let { row: i, column: j } = getRowColumn(cellDiv);
+
+    // console.log(`i = ${i} , j = ${j}`);
+
     if (!cellDiv.classList.contains("emptyCell")) {
         cellDiv.classList.remove("blockedCell");
         cellDiv.classList.add("emptyCell");
-
-        let { row: i, column: j } = getRowColumn(cellDiv);
-
         gridVal[i][j] = emptyCellVal;
     }
 }

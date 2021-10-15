@@ -20,7 +20,7 @@
         <div class="inputContainer">
             <div id="gridSizeInputContainer">
                 <p>Grid Size : </p>
-                <input type="range" class="canBeDisabled" id="gridSizeInput" min=5 max=50 step=1 value=40>
+                <input type="range" class="canBeDisabled" id="gridSizeInput" min=10 max=60 step=1 value=40>
             </div>
 
             <div id="speedInputContainer">
@@ -68,8 +68,8 @@
                 </div>
                 <ul class="dropdown hiddenDropdown" id = "generateMazeDropdown">
                     <div class="dropdown-item" id = "simpleRandomMaze">Simple Random Maze</div>
-                    <!-- <div class="dropdown-item">Maze 2</div>
-                    <div class="dropdown-item">Maze 3</div>
+                    <div class="dropdown-item" id ="recursiveDivisionMaze">Recursive Division Maze</div>
+                    <!-- <div class="dropdown-item">Maze 3</div>
                     <div class="dropdown-item">Maze 4</div> -->
                 </ul>
             </div>
@@ -131,6 +131,9 @@
 
 
     <script src="script/algorithms/simpleRandomMaze.js"></script>
+    <script src="script/algorithms/recursiveDivisionMaze.js"></script>
+
+
 
 </body>
 </html>
