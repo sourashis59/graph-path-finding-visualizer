@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/buttonStyles.css">
 
-    <title>Document</title>
+    <title>Graph Path Finding Visualizer</title>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         <div class="inputContainer">
             <div id="gridSizeInputContainer">
                 <p>Grid Size : </p>
-                <input type="range" class="canBeDisabled" id="gridSizeInput" min=10 max=60 step=1 value=40>
+                <input type="range" class="canBeDisabled" id="gridSizeInput" min=3 max=60 step=1 value=40>
             </div>
 
             <div id="speedInputContainer">
@@ -120,6 +120,7 @@
     <script src="script/handleDropdown.js"></script>
     <script src="script/dataStructures/linkedList.js"></script>
     <script src="script/dataStructures/queue.js"></script>
+    <script src="script/dataStructures/priorityQueue.js"></script>
 
     <script src="script/helperFunctions.js"></script>
     <script src="script/visualize/visualize.js"></script>
@@ -128,6 +129,8 @@
     <script src="script/handleButton.js"></script>
     <script src="script/algorithms/bfsFindPath.js"></script>
     <script src="script/algorithms/dfsFindPath.js"></script>
+    <script src="script/algorithms/dijkstraFindPath.js"></script>
+    <script src="script/algorithms/aStarFindPath.js"></script>
 
 
     <script src="script/algorithms/simpleRandomMaze.js"></script>

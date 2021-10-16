@@ -91,4 +91,34 @@ class DoublyLinkedList {
         this.size--;
         return firstNode.data;
     }
+
+    sortedInsert(newData, isFirstPlacedBeforeSecond) {
+        let p = this.head.next;
+
+        let newNode = new DoublyLinkedLisNode(newData);
+
+        this.size++;
+
+        while (p !== this.tail) {
+            if (isFirstPlacedBeforeSecond(newData, p.data)) {
+                newNode.next = p;
+                newNode.prev = p.prev;
+
+                p.prev.next = newNode;
+                p.prev = newNode;
+
+                return;
+            }
+
+            p = p.next;
+        }
+
+        if (p === this.tail) {
+            newNode.next = p;
+            newNode.prev = p.prev;
+
+            p.prev.next = newNode;
+            p.prev = newNode;
+        }
+    }
 }

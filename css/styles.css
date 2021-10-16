@@ -143,7 +143,7 @@ tbody {
 }
 
 .gridRow {
-    background-color: coral;
+    /* background-color: coral; */
     flex: 1;
 
     width: 100%;
@@ -161,14 +161,17 @@ tbody {
 
 .blockedCell {
     background-color: var(--blockedCellColor);
+    border: 0.01rem solid var(--blockedCellColor);
 
     /* border: none; */
 }
 
 .sourceCell {
-    background-color: green;
+    background-color: rgb(22, 204, 22);
+    border-radius: 50%;
 }
 
 .destCell {
-    background-color: brown;
+    background-color: red;
+    border-radius: 50%;
 }

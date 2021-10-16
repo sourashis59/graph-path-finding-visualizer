@@ -1,6 +1,6 @@
 "use strict";
 
-function changeCellStyle(cellDiv, newColor) {
+function changeCellStyle(cellDiv, newColor, borderRadius = "0%") {
     if (
         areRowColumnObjectsEqual(getRowColumn(cellDiv), sourceRowColumn) ||
         areRowColumnObjectsEqual(getRowColumn(cellDiv), destRowColumn)
@@ -9,12 +9,13 @@ function changeCellStyle(cellDiv, newColor) {
 
     let id = setTimeout(function () {
         cellDiv.style.backgroundColor = newColor;
+        cellDiv.style.borderRadius = borderRadius;
     }, (netDelay += delayTime));
 
     timeOutIds.push(id);
 }
 
-function changeCellStyleWithoutDelay(cellDiv, newColor) {
+function changeCellStyleWithoutDelay(cellDiv, newColor, borderRadius = "0%") {
     if (
         areRowColumnObjectsEqual(getRowColumn(cellDiv), sourceRowColumn) ||
         areRowColumnObjectsEqual(getRowColumn(cellDiv), destRowColumn)
@@ -23,6 +24,7 @@ function changeCellStyleWithoutDelay(cellDiv, newColor) {
 
     let id = setTimeout(function () {
         cellDiv.style.backgroundColor = newColor;
+        cellDiv.style.borderRadius = borderRadius;
     }, netDelay);
 
     timeOutIds.push(id);
@@ -41,8 +43,8 @@ function enqueuedCellVisualize(cellDiv, withDelay = true) {
 
     const enqueuedCellColor = style.getPropertyValue("--enqueuedCell");
 
-    if (withDelay) changeCellStyle(cellDiv, enqueuedCellColor);
-    else changeCellStyleWithoutDelay(cellDiv, enqueuedCellColor);
+    if (withDelay) changeCellStyle(cellDiv, enqueuedCellColor, "50%");
+    else changeCellStyleWithoutDelay(cellDiv, enqueuedCellColor, "50%");
 }
 
 function cellInPathVisualize(cellDiv, withDelay = true) {

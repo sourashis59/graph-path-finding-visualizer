@@ -12,7 +12,7 @@ class Queue {
     }
 
     front() {
-        if (this.isEmpty)
+        if (this.isEmpty())
             throw new Error("Trying to access top of empty queueue");
         else return this.list.getFirstNode();
     }
