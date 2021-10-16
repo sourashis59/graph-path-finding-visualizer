@@ -28,3 +28,4 @@ findPathButton.addEventListener("click", handleFindPathButtonClick);
 resetButton.addEventListener("click", handleResetButton);
 
 gridSizeInputElement.addEventListener("input", updateGridSize);
+speedInputElement.addEventListener("input", updateSpeed);

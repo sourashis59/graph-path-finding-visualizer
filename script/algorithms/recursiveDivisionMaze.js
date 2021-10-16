@@ -64,7 +64,7 @@ function recursiveDivisionMaze() {
             let emptyCellHasBeenPut = false;
 
             for (let i = x1; i <= x2; i++) {
-                if (!emptyCellHasBeenPut && getRandomInt(0, 6) === 1) {
+                if (!emptyCellHasBeenPut && getRandomInt(0, 10) === 1) {
                     makeCellEmpty(gridDiv[i][midColumn]);
                     if (i + 1 <= x2) {
                         makeCellEmpty(gridDiv[i + 1][midColumn]);

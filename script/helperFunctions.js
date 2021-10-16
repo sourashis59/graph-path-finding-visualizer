@@ -190,7 +190,7 @@ function updateGridSize() {
 function updateSpeed() {
     let speed = Number(speedInputElement.value);
 
-    delayTime = 1000 / (speed * speed);
+    delayTime = 1000 / speed ** 1.5;
 }
 
 function endPathFinding() {

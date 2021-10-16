@@ -161,6 +161,8 @@ tbody {
 
 .blockedCell {
     background-color: var(--blockedCellColor);
+
+    /* border: none; */
 }
 
 .sourceCell {
