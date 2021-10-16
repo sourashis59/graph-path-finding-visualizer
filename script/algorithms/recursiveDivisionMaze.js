@@ -10,6 +10,7 @@ function recursiveDivisionMaze() {
     for (let i = rowSize - 2; i >= 1; i--) makeCellBlocked(gridDiv[i][0]);
 
     let topLeftCell = { row: 1, column: 1 };
+
     let bottomRightCell = { row: rowSize - 2, column: columnSize - 2 };
 
     recursiveDivisionMaze_helper(topLeftCell, bottomRightCell, "vertical");
