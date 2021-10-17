@@ -1,6 +1,11 @@
 "use strict";
 
-function changeCellStyle(cellDiv, newColor, borderRadius = "0%") {
+function changeCellStyle(
+    cellDiv,
+    newColor,
+    borderRadius = "0%",
+    opacity = "100%"
+) {
     if (
         areRowColumnObjectsEqual(getRowColumn(cellDiv), sourceRowColumn) ||
         areRowColumnObjectsEqual(getRowColumn(cellDiv), destRowColumn)
@@ -10,12 +15,18 @@ function changeCellStyle(cellDiv, newColor, borderRadius = "0%") {
     let id = setTimeout(function () {
         cellDiv.style.backgroundColor = newColor;
         cellDiv.style.borderRadius = borderRadius;
+        cellDiv.style.opacity = opacity;
     }, (netDelay += delayTime));
 
     timeOutIds.push(id);
 }
 
-function changeCellStyleWithoutDelay(cellDiv, newColor, borderRadius = "0%") {
+function changeCellStyleWithoutDelay(
+    cellDiv,
+    newColor,
+    borderRadius = "0%",
+    opacity = "100%"
+) {
     if (
         areRowColumnObjectsEqual(getRowColumn(cellDiv), sourceRowColumn) ||
         areRowColumnObjectsEqual(getRowColumn(cellDiv), destRowColumn)
@@ -25,6 +36,7 @@ function changeCellStyleWithoutDelay(cellDiv, newColor, borderRadius = "0%") {
     let id = setTimeout(function () {
         cellDiv.style.backgroundColor = newColor;
         cellDiv.style.borderRadius = borderRadius;
+        cellDiv.style.opacity = opacity;
     }, netDelay);
 
     timeOutIds.push(id);
@@ -43,8 +55,8 @@ function enqueuedCellVisualize(cellDiv, withDelay = true) {
 
     const enqueuedCellColor = style.getPropertyValue("--enqueuedCell");
 
-    if (withDelay) changeCellStyle(cellDiv, enqueuedCellColor, "50%");
-    else changeCellStyleWithoutDelay(cellDiv, enqueuedCellColor, "50%");
+    if (withDelay) changeCellStyle(cellDiv, enqueuedCellColor, "30%", "70%");
+    else changeCellStyleWithoutDelay(cellDiv, enqueuedCellColor, "30%", "70%");
 }
 
 function cellInPathVisualize(cellDiv, withDelay = true) {

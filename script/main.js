@@ -143,6 +143,12 @@ function findPathFunction() {
                 returnedObj = DFS_FindPath();
                 break;
 
+            case "BIDIRECTIONAL_BFS_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = Bidirectional_BFS_FindPath();
+                break;
+
             case "DIJKSTRA_BUTTON":
                 updateStatus("findingPath");
 
@@ -160,7 +166,24 @@ function findPathFunction() {
         }
 
         if (returnedObj.destFound) {
-            visualizePath(returnedObj.parent, sourceRowColumn, destRowColumn);
+            if (selectedAlgo === "BIDIRECTIONAL_BFS_BUTTON") {
+                visualizePath(
+                    returnedObj.parentSource,
+                    sourceRowColumn,
+                    returnedObj.meetingPoint
+                );
+
+                visualizePath(
+                    returnedObj.parentDest,
+                    destRowColumn,
+                    returnedObj.meetingPoint
+                );
+            } else
+                visualizePath(
+                    returnedObj.parent,
+                    sourceRowColumn,
+                    destRowColumn
+                );
 
             updateStatus("pathFound");
         } else {

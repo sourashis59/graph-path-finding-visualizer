@@ -80,6 +80,13 @@ function handleSelectAlgorithmDropdownClick(e) {
             selectAlgorithmButton.querySelector(".button").innerHTML = "DFS";
             break;
 
+        case "BIDIRECTIONAL_BFS_BUTTON":
+            resetStatus();
+
+            selectAlgorithmButton.querySelector(".button").innerHTML =
+                "Bidirectional BFS";
+            break;
+
         case "DIJKSTRA_BUTTON":
             resetStatus();
 
