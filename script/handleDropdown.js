@@ -69,12 +69,18 @@ function handleSelectAlgorithmDropdownClick(e) {
             resetStatus();
 
             selectAlgorithmButton.querySelector(".button").innerHTML = "BFS";
+            document.querySelector(".detailsContainer").innerHTML =
+                "Breadth First Search : is unweighted search algorithm and guarantees shortest path  ";
+
             break;
 
         case "DFS_BUTTON":
             resetStatus();
 
             selectAlgorithmButton.querySelector(".button").innerHTML = "DFS";
+            document.querySelector(".detailsContainer").innerHTML =
+                "Depth First Search : is unweighted search algorithm and does not guarantee shortest path  ";
+
             break;
 
         case "BIDIRECTIONAL_BFS_BUTTON":
@@ -82,6 +88,9 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             selectAlgorithmButton.querySelector(".button").innerHTML =
                 "Bidirectional BFS";
+            document.querySelector(".detailsContainer").innerHTML =
+                "Bidirectional BFS : is unweighted search algorithm and guarantees shortest path  ";
+
             break;
 
         case "DIJKSTRA_BUTTON":
@@ -89,17 +98,23 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             selectAlgorithmButton.querySelector(".button").innerHTML =
                 "Dijkstra";
+            document.querySelector(".detailsContainer").innerHTML =
+                "Dijkstra's algorithm : is weighted search algorithm and guarantees shortest path  ";
+
             break;
 
         case "A_STAR_BUTTON":
             resetStatus();
 
             selectAlgorithmButton.querySelector(".button").innerHTML = "A*";
+            document.querySelector(".detailsContainer").innerHTML =
+                "A* : is weighted search algorithm and guarantees shortest path in case of underestimate  ";
+
             break;
 
         case "None":
             selectAlgorithmButton.querySelector(".button").innerHTML =
-                "Select Algorithm";
+                "Select Algorithm :)";
 
             break;
 

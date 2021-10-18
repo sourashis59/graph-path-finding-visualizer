@@ -1,0 +1,21 @@
+.socialMediaDiv {
+    flex: 1;
+    /* background-color: yellow; */
+
+    display: flex;
+    flex-direction: row-reverse;
+
+    align-items: center;
+}
+
+.socialMediaIcon {
+    /* width: 10%; */
+    height: 50%;
+    /* padding-right: 1%; */
+    margin-right: 2%;
+}
+
+.socialMediaIcon:hover {
+    height: 55%;
+    cursor: pointer;
+}

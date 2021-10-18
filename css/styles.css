@@ -27,7 +27,7 @@ body {
     width: 100vw;
     height: 100vh;
 
-    font-size: 3rem;
+    font-size: 3vh;
 }
 
 .mainContainer {
@@ -57,7 +57,7 @@ body {
     /* background-color: aqua; */
     color: white;
     font-family: "Helvetica Neue", sans-serif;
-    font-size: 3.5rem;
+    font-size: 3.5vh;
     padding: 1.5rem;
     padding-left: 2rem;
     text-align: left;
@@ -67,7 +67,7 @@ body {
 .inputContainer {
     padding: 1.5rem;
     color: white;
-    font-size: 2rem;
+    font-size: 2vh;
 
     display: flex;
 
@@ -116,7 +116,7 @@ body {
 
 .detailsContainer {
     /* background-color: burlywood; */
-    height: 6%;
+    height: 4%;
 
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
@@ -124,7 +124,7 @@ body {
     margin-bottom: auto;
     text-align: center;
 
-    font-size: 2.5rem;
+    font-size: 2.3vh;
 }
 
 .gridContainer {
