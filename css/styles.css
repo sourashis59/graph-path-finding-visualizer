@@ -1,9 +1,12 @@
 :root {
     --enqueuedCell: rgb(85, 176, 218);
-    --visitedCellColor: rgb(182, 233, 233);
+    --visitedCellColor: rgb(151, 229, 243);
     --cellInPathColor: yellow;
-    --blockedCellColor: rgb(8, 8, 131);
-    --cellBorderColor: rgb(125, 218, 224);
+    --blockedCellColor: rgb(16, 16, 104);
+    --cellBorderColor: rgb(105, 224, 233);
+
+    --sourceCellColor: green;
+    --destCellColor: red;
 }
 
 * {
@@ -153,6 +156,10 @@ tbody {
 .gridCell {
     background-color: white;
     border: 0.01rem solid var(--cellBorderColor);
+
+    /* transition: background-color 0.7s; */
+
+    /* animation: gridCellEnqueueAnimation 1s linear forwards; */
 }
 
 .emptyCell {
@@ -164,14 +171,20 @@ tbody {
     border: 0.01rem solid var(--blockedCellColor);
 
     /* border: none; */
+
+    transition: none;
 }
 
 .sourceCell {
-    background-color: rgb(22, 204, 22);
+    background-color: var(--sourceCellColor);
     border-radius: 50%;
+
+    animation: gridCellGlow 1s linear forwards infinite alternate;
 }
 
 .destCell {
-    background-color: red;
+    background-color: var(--destCellColor);
     border-radius: 50%;
+
+    animation: gridCellGlow 1s linear forwards infinite alternate;
 }

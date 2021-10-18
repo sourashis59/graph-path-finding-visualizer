@@ -42,7 +42,13 @@
 
 .dropdown {
     position: absolute;
-    background-image: linear-gradient(144deg, #c5c0f0, #e0bef7 50%, #fddef8);
+    background-image: linear-gradient(
+        144deg,
+        #887fdb,
+        #dfbcf7 50%,
+        hsl(310, 54%, 80%)
+    );
+    color: black;
 
     border-radius: 2rem;
 
@@ -54,16 +60,21 @@
     /* top: 5%; */
     /* left: 12%; */
 
-    width: 100%;
+    width: auto;
     margin-left: auto;
     margin-right: auto;
+
+    white-space: nowrap;
+    padding: 1rem;
     /* width: auto; */
 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 450;
 
-    border: 0.2rem solid rgb(42, 138, 79);
+    border-left: 0.2rem solid white;
+    border-right: 0.2rem solid black;
+
     margin: 1rem;
 
     display: flex;
@@ -90,8 +101,10 @@
 .dropdown-item:hover {
     cursor: pointer;
 
-    background: rgb(48, 11, 150);
+    background: rgb(49, 12, 184);
     color: white;
+
+    font-style: italic;
 }
 
 .hiddenDropdown {

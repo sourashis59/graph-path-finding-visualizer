@@ -3,8 +3,8 @@
 function changeCellStyle(
     cellDiv,
     newColor,
-    borderRadius = "0%",
-    opacity = "100%"
+    argumentDelayTime = delayTime,
+    argumentAnimationID = `none`
 ) {
     if (
         areRowColumnObjectsEqual(getRowColumn(cellDiv), sourceRowColumn) ||
@@ -14,19 +14,18 @@ function changeCellStyle(
 
     let id = setTimeout(function () {
         cellDiv.style.backgroundColor = newColor;
-        cellDiv.style.borderRadius = borderRadius;
-        cellDiv.style.opacity = opacity;
-    }, (netDelay += delayTime));
+
+        // cellDiv.style.transition = `background-color 0.7s`;
+
+        cellDiv.style.animation = `${argumentAnimationID} ${
+            argumentDelayTime * 15
+        }ms linear forwards`;
+    }, (netDelay += argumentDelayTime));
 
     timeOutIds.push(id);
 }
 
-function changeCellStyleWithoutDelay(
-    cellDiv,
-    newColor,
-    borderRadius = "0%",
-    opacity = "100%"
-) {
+function changeCellStyleWithoutDelay(cellDiv, newColor, borderRadius = "0%") {
     if (
         areRowColumnObjectsEqual(getRowColumn(cellDiv), sourceRowColumn) ||
         areRowColumnObjectsEqual(getRowColumn(cellDiv), destRowColumn)
@@ -36,7 +35,6 @@ function changeCellStyleWithoutDelay(
     let id = setTimeout(function () {
         cellDiv.style.backgroundColor = newColor;
         cellDiv.style.borderRadius = borderRadius;
-        cellDiv.style.opacity = opacity;
     }, netDelay);
 
     timeOutIds.push(id);
@@ -46,7 +44,13 @@ function visitedCellVisualize(cellDiv, withDelay = true) {
     let style = getComputedStyle(document.documentElement);
     const visitedCellColor = style.getPropertyValue("--visitedCellColor");
 
-    if (withDelay) changeCellStyle(cellDiv, visitedCellColor);
+    if (withDelay)
+        changeCellStyle(
+            cellDiv,
+            visitedCellColor,
+            delayTime,
+            "gridCellVisitedAnimation"
+        );
     else changeCellStyleWithoutDelay(cellDiv, visitedCellColor);
 }
 
@@ -55,8 +59,19 @@ function enqueuedCellVisualize(cellDiv, withDelay = true) {
 
     const enqueuedCellColor = style.getPropertyValue("--enqueuedCell");
 
-    if (withDelay) changeCellStyle(cellDiv, enqueuedCellColor, "30%", "70%");
-    else changeCellStyleWithoutDelay(cellDiv, enqueuedCellColor, "30%", "70%");
+    if (withDelay)
+        changeCellStyle(
+            cellDiv,
+            enqueuedCellColor,
+            delayTime,
+            `gridCellEnqueueAnimation`
+        );
+    else
+        changeCellStyleWithoutDelay(
+            cellDiv,
+            enqueuedCellColor,
+            `gridCellEnqueueAnimation`
+        );
 }
 
 function cellInPathVisualize(cellDiv, withDelay = true) {
@@ -64,6 +79,12 @@ function cellInPathVisualize(cellDiv, withDelay = true) {
 
     const cellInPathColor = style.getPropertyValue("--cellInPathColor");
 
-    if (withDelay) changeCellStyle(cellDiv, cellInPathColor);
+    if (withDelay)
+        changeCellStyle(
+            cellDiv,
+            cellInPathColor,
+            delayTime * 4,
+            "gridCellPathAnimation"
+        );
     else changeCellStyleWithoutDelay(cellDiv, cellInPathColor);
 }

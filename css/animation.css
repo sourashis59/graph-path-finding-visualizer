@@ -1,0 +1,103 @@
+@keyframes gridCellGlow {
+    0% {
+        opacity: 50%;
+        border-radius: 100%;
+    }
+
+    20% {
+        opacity: 60%;
+        border-radius: 50%;
+    }
+
+    40% {
+        opacity: 70%;
+        border-radius: 40%;
+    }
+    60% {
+        opacity: 80%;
+        border-radius: 20%;
+    }
+    80% {
+        opacity: 90%;
+        border-radius: 10%;
+    }
+    100% {
+        opacity: 100%;
+        border-radius: none;
+    }
+}
+
+@keyframes gridCellEnqueueAnimation {
+    0% {
+        opacity: 100%;
+        border-radius: 0%;
+        background-color: yellow;
+    }
+
+    30% {
+        opacity: 70%;
+        border-radius: 50%;
+        background-color: rgb(122, 212, 104);
+    }
+
+    /*
+    80% {
+        opacity: 90%;
+        border-radius: 10%;
+    } */
+
+    90% {
+        border-radius: 40%;
+    }
+
+    100% {
+        opacity: 100%;
+        border-radius: 25%;
+        background-color: var(--enqueuedCell);
+    }
+}
+
+@keyframes gridCellVisitedAnimation {
+    0% {
+        opacity: 100%;
+        border-radius: 25%;
+        background-color: var(--enqueuedCell);
+    }
+
+    100% {
+        opacity: 100%;
+        border-radius: 0%;
+        background-color: var(--visitedCellColor);
+        border: 0.01rem solid white;
+    }
+}
+
+@keyframes gridCellPathAnimation {
+    0% {
+        opacity: 100%;
+        border-radius: 50%;
+        background-color: orangered;
+    }
+
+    30% {
+        border-radius: 50%;
+        background-color: orange;
+    }
+
+    /*
+    80% {
+        opacity: 90%;
+        border-radius: 10%;
+    } */
+
+    90% {
+        border-radius: 40%;
+    }
+
+    100% {
+        border-radius: 0%;
+        background-color: var(--cellInPathColor);
+
+        border: 0.01rem solid var(--cellInPathColor);
+    }
+}
