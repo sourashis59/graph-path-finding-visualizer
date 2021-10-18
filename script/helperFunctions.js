@@ -97,15 +97,12 @@ function makeCellBlocked(cellDiv) {
 
         let { row: i, column: j } = getRowColumn(cellDiv);
 
-        // console.log(` i = ${i}  , j = ${j}`);
         gridVal[i][j] = blockedCellVal;
     }
 }
 
 function makeCellEmpty(cellDiv) {
     let { row: i, column: j } = getRowColumn(cellDiv);
-
-    // console.log(`i = ${i} , j = ${j}`);
 
     if (!cellDiv.classList.contains("emptyCell")) {
         cellDiv.classList.remove("blockedCell");
@@ -134,24 +131,7 @@ function resetDelayTime() {
     netDelay = 0;
 }
 
-function resetStatus() {
-    document.querySelector("#statusText").innerHTML = "Chilling";
-
-    // console.log(statusImageContainer);
-
-    let statusImageContainerChildren =
-        statusImageContainer.querySelectorAll("img");
-
-    // console.log(statusImageContainerChildren);
-
-    for (let i = 0; i < statusImageContainerChildren.length; i++) {
-        // console.log(statusImageContainerChildren[i]);
-
-        statusImageContainerChildren[i].classList.add("hidden");
-    }
-}
-
-function resetAll() {
+function resetTimeOuts() {
     //Important to ignore bug : First priority is to clear the endPathFinding timout
     if (endPathFindingTimeOutID) clearTimeout(endPathFindingTimeOutID);
 
@@ -159,6 +139,52 @@ function resetAll() {
     for (let i = 0; i < timeOutIds.length; i++) clearTimeout(timeOutIds[i]);
 
     timeOutIds = [];
+    resetDelayTime();
+}
+
+function resetStatus() {
+    document.querySelector("#statusText").innerHTML = "Chilling";
+
+    let statusImageContainerChildren =
+        statusImageContainer.querySelectorAll("img");
+
+    for (let i = 0; i < statusImageContainerChildren.length; i++) {
+        statusImageContainerChildren[i].classList.add("hidden");
+    }
+}
+
+function resetEmptyCells() {
+    resetTimeOuts();
+    resetStatus();
+
+    cellBlockToggleAllowed = true;
+
+    for (let i = 0; i < rowSize; i++) {
+        for (let j = 0; j < columnSize; j++) {
+            if (
+                gridVal[i][j] !== blockedCellVal &&
+                !gridDiv[i][j].classList.contains("blockedCell") &&
+                !isSourceCell(gridDiv[i][j]) &&
+                !isDestinationCell(gridDiv[i][j])
+            ) {
+                gridDiv[i][j].style.backgroundColor = "white";
+                gridDiv[i][j].style.animation = "none";
+
+                // let style = getComputedStyle(document.documentElement);
+                // const borderColor = style.getPropertyValue(
+                //     "--cellBcellBorderColor"
+                // );
+
+                // gridDiv[i][
+                //     j
+                // ].style.border = `border: 0.01rem solid ${borderColor}`;
+            }
+        }
+    }
+}
+
+function resetAll() {
+    resetTimeOuts();
 
     for (let i = 0; i < gridCellList.length; i++) gridCellList.classList = [];
 
@@ -168,14 +194,12 @@ function resetAll() {
     gridDiv = [];
     gridDiv = make2DArray(rowSize, columnSize);
 
-    resetDelayTime();
-
     mouseIsPressed = false;
     pathFindingGoingOn = false;
 
     resetStatus();
 
-    buttonsAllowed = true;
+    cellBlockToggleAllowed = true;
 
     enableButtons();
 }
@@ -197,6 +221,8 @@ function endPathFinding() {
     endPathFindingTimeOutID = setTimeout(function () {
         pathFindingGoingOn = false;
         console.log("path finding function finished");
+
+        enableButtonsWhichCanBeEnabledWithoutReset();
     }, (netDelay += delayTime));
 }
 
@@ -220,8 +246,6 @@ function updateStatus(status) {
                         i < statusImageContainerChildren.length;
                         i++
                     ) {
-                        // console.log(statusImageContainerChildren[i]);
-
                         if (
                             statusImageContainerChildren[i].id ===
                             "pathFoundImage"
@@ -244,8 +268,6 @@ function updateStatus(status) {
                         i < statusImageContainerChildren.length;
                         i++
                     ) {
-                        // console.log(statusImageContainerChildren[i]);
-
                         if (
                             statusImageContainerChildren[i].id ===
                             "pathNotFoundImage"
@@ -259,6 +281,8 @@ function updateStatus(status) {
                                     "hidden"
                                 );
                             }, 7000);
+
+                            timeOutIds.push(id1);
 
                             break;
                         }
@@ -275,8 +299,6 @@ function updateStatus(status) {
                         i < statusImageContainerChildren.length;
                         i++
                     ) {
-                        // console.log(statusImageContainerChildren[i]);
-
                         if (
                             statusImageContainerChildren[i].id ===
                             "algorithmNotSelectedImage"
@@ -299,8 +321,6 @@ function updateStatus(status) {
                 default:
                     alert("error in updating status");
             }
-
-            console.log(statusText);
         },
 
         (netDelay += delayTime)
@@ -324,6 +344,17 @@ function enableButtons() {
     for (let i = 0; i < canBeDisabledButtons.length; i++) {
         canBeDisabledButtons[i].classList.remove("disabledButton");
         canBeDisabledButtons[i].disabled = false;
+    }
+}
+
+function enableButtonsWhichCanBeEnabledWithoutReset() {
+    const canBeEnabledWithoutResetButtons = document.querySelectorAll(
+        ".canBeEnabledWithoutReset"
+    );
+
+    for (let i = 0; i < canBeEnabledWithoutResetButtons.length; i++) {
+        canBeEnabledWithoutResetButtons[i].classList.remove("disabledButton");
+        canBeEnabledWithoutResetButtons[i].disabled = false;
     }
 }
 

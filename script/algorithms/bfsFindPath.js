@@ -1,4 +1,6 @@
 function BFS_FindPath() {
+    console.log("BFS function called");
+
     let visited = make2DArray(rowSize, columnSize);
     let parent = make2DArray(rowSize, columnSize);
     for (let i = 0; i < rowSize; i++) {

@@ -132,7 +132,7 @@ body {
     padding: 1rem;
     height: 100%;
     width: 100%;
-    /* background-color: yellow; */
+    /* background-color: white; */
 
     display: flex;
 }
@@ -154,7 +154,7 @@ tbody {
 }
 
 .gridCell {
-    background-color: white;
+    background-color: none;
     border: 0.01rem solid var(--cellBorderColor);
 
     /* transition: background-color 0.7s; */
@@ -163,11 +163,12 @@ tbody {
 }
 
 .emptyCell {
+    background-color: none;
     background-color: white;
 }
 
 .blockedCell {
-    background-color: var(--blockedCellColor);
+    background-color: var(--blockedCellColor) !important;
     border: 0.01rem solid var(--blockedCellColor);
 
     /* border: none; */

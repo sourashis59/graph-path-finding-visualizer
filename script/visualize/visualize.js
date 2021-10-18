@@ -17,9 +17,11 @@ function changeCellStyle(
 
         // cellDiv.style.transition = `background-color 0.7s`;
 
-        cellDiv.style.animation = `${argumentAnimationID} ${
-            argumentDelayTime * 15
-        }ms linear forwards`;
+        if (argumentAnimationID !== "none")
+            cellDiv.style.animation = `${argumentAnimationID} ${
+                argumentDelayTime * 15
+            }ms linear forwards`;
+        else cellDiv.style.animation = "none";
     }, (netDelay += argumentDelayTime));
 
     timeOutIds.push(id);

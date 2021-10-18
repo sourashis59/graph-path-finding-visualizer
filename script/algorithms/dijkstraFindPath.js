@@ -13,6 +13,8 @@ function comparatorDijkstraPriorityQueue(a, b) {
 }
 
 function DIJKSTRA_FindPath() {
+    console.log("Dijkstra function called");
+
     let visited = make2DArray(rowSize, columnSize);
     let parent = make2DArray(rowSize, columnSize);
     let distance = make2DArray(rowSize, columnSize);

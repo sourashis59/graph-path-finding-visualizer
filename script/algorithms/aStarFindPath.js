@@ -17,6 +17,8 @@ function comparatorAStarPriorityQueue(a, b) {
 }
 
 function A_STAR_FindPath() {
+    console.log("A* function called");
+
     let visited = make2DArray(rowSize, columnSize);
     let parent = make2DArray(rowSize, columnSize);
     let distance = make2DArray(rowSize, columnSize);

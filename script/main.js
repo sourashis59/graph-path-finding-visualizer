@@ -1,9 +1,3 @@
-// window.onload = function () {
-//     console.log("page loaded");
-
-//     drawGrids();
-// };
-
 //*Variable declaration______________________________________________________________
 
 const gridSizeInputElement = document.getElementById("gridSizeInput");
@@ -13,7 +7,7 @@ let rowSize = Number(gridSizeInputElement.value);
 let columnSize = Math.floor(rowSize * (15 / 7));
 
 let pathFindingGoingOn = false;
-let buttonsAllowed = true;
+let cellBlockToggleAllowed = true;
 
 let delayTime = 7;
 let netDelay = 0;
@@ -104,8 +98,6 @@ function drawGrids() {
     //*Add event listners to each cell :)
 
     for (let i = 0; i < gridCellList.length; i++) {
-        // console.log(`Adding event listner to ${gridCellList[i]}`);
-
         //*Make a cell blocked or empty_________________________________________________________
         gridCellList[i].addEventListener(
             "mousedown",
@@ -126,8 +118,10 @@ function findPathFunction() {
     if (selectedAlgo === "None") {
         updateStatus("algorithmNotSelected");
     } else if (!pathFindingGoingOn) {
+        console.log("findPathFunction() started");
+
         pathFindingGoingOn = true;
-        buttonsAllowed = false;
+        cellBlockToggleAllowed = false;
         disableButtons();
 
         switch (selectedAlgo) {
@@ -199,15 +193,14 @@ function findPathFunction() {
 
 function handleGridCellOnMouseDown(e) {
     let cellDiv = e.target;
-    console.log(`Mouse down on ${cellDiv} `);
+    // console.log(`Mouse down on ${cellDiv} `);
 
     mouseIsPressed = true;
 
     if (
         !isSourceCell(cellDiv) &&
         !isDestinationCell(cellDiv) &&
-        !pathFindingGoingOn &&
-        buttonsAllowed
+        cellBlockToggleAllowed
     )
         toggleCellBlock(cellDiv);
 }
@@ -215,20 +208,19 @@ function handleGridCellOnMouseDown(e) {
 function handleGridCellMouseEnter(e) {
     let cellDiv = e.target;
 
-    if (pathFindingGoingOn) cellDiv.style.cursor = "not-allowed";
+    if (!cellBlockToggleAllowed) cellDiv.style.cursor = "not-allowed";
     if (
         mouseIsPressed &&
         !isSourceCell(cellDiv) &&
         !isDestinationCell(cellDiv) &&
-        !pathFindingGoingOn &&
-        buttonsAllowed
+        cellBlockToggleAllowed
     )
         toggleCellBlock(cellDiv);
 }
 
 function handleGridCellOnMouseUp(e) {
     let cell = e.target;
-    console.log(`Mouse up on ${cell} `);
+    // console.log(`Mouse up on ${cell} `);
     mouseIsPressed = false;
 }
 

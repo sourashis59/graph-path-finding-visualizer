@@ -1,4 +1,6 @@
 function recursiveDivisionMaze() {
+    console.log("Recursive Division function called");
+
     clearBlockedCells();
 
     let minWidth = (minHeight = 3);

@@ -41,11 +41,9 @@ function handleDropdownButtonClick(e) {
 }
 
 function handleWindowObjectClickDropdown(e) {
-    console.log("window object clicked");
-
-    if (e.target.classList.contains("dropdown")) {
-        console.log("dropdown clicked");
-    }
+    // if (e.target.classList.contains("dropdown")) {
+    //     console.log("dropdown clicked");
+    // }
 
     for (let i = 0; i < dropdownButtonContainers.length; i++) {
         dropdownButtonContainers[i]
@@ -62,7 +60,6 @@ function handleWindowObjectClickDropdown(e) {
 }
 
 function handleSelectAlgorithmDropdownClick(e) {
-    // console.log(e.target.id);
     if (e.target.classList.contains("disabledButton")) return;
 
     selectedAlgo = e.target.id;
@@ -108,6 +105,8 @@ function handleSelectAlgorithmDropdownClick(e) {
 
         default:
             // alert("error in selecting algorithm");
+            selectedAlgo = "None";
+
             e.stopPropagation();
 
             break;

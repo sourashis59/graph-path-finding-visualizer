@@ -26,6 +26,8 @@ function DFS_helper(sourceRowColumn, destRowColumn, visited, parent) {
 }
 
 function DFS_FindPath() {
+    console.log("DFS function called");
+
     let visited = make2DArray(rowSize, columnSize);
     let parent = make2DArray(rowSize, columnSize);
     for (let i = 0; i < rowSize; i++) {

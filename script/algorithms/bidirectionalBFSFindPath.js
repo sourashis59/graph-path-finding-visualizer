@@ -1,4 +1,6 @@
 function Bidirectional_BFS_FindPath() {
+    console.log("Bidirectional BFS function called");
+
     let visitedSource = make2DArray(rowSize, columnSize);
     let visitedDest = make2DArray(rowSize, columnSize);
 
