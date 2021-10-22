@@ -125,6 +125,25 @@ body {
     text-align: center;
 
     font-size: 2.3vh;
+
+    display: flex;
+    align-items: center;
+}
+
+#detailText {
+    flex: 1;
+}
+
+#legendButton {
+    height: 130%;
+    width: auto;
+
+    margin-right: 2%;
+}
+
+#legendButton:hover {
+    cursor: pointer;
+    height: 150%;
 }
 
 .gridContainer {

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/buttonStyles.css">
     <link rel="stylesheet" href="css/animation.css">
     <link rel="stylesheet" href="css/socialMedia.css">
+    <link rel="stylesheet" href="css/legend.css">
 
     <title>Graph Path Finding Visualizer</title>
     <link rel="shortcut icon" type="image/jpg" href="media/sedcat.png" />
@@ -115,7 +116,9 @@
     
     
                 <div class="detailsContainer">
-                    Select an algorithm :)
+                    <p id = "detailText">Select an algorithm :)</p>
+
+                    <img src="media/linkinparklogo.png" alt="legendLogo" id = "legendButton">
                 </div>
     
     
@@ -126,8 +129,92 @@
     
     
         </div>
+
+        
     </div>
+
+
+    
 </div>
+
+
+
+
+
+
+<div class="legendContainer hidden">
+
+    <h1 class="legendHeader"> <p>Legend </p>  <div class="cross" id ="crossButtonLegend">✖</div> </h1>
+
+
+
+
+    <div class="legendIconContainer">
+
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" id="visitedCellIcon"></div>
+            </div>
+            <div class="name">Visited Cell</div>
+        </div>
+
+        <div class="legendElement">
+        
+            <div class="iconContainer">
+                <div class="icon" id="emptyCellIcon"></div>
+            </div>
+            <div class="name">Empty Cell</div>
+        </div>
+
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" id="enqueuedCellIcon"></div>
+            </div>
+            <div class="name">Enqueued Cell</div>
+        </div>     
+                
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" id="blockedCellIcon"></div>
+            </div>
+            <div class="name">Blocked Cell</div>
+        </div>
+
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" id="sourceCellIcon"></div>
+            </div>
+            <div class="name">Source Cell</div>
+        </div>
+
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" id="destCellIcon"></div>
+            </div>
+            <div class="name">Destination Cell</div>
+        </div>
+
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" id="pathCellIcon"></div>
+            </div>
+            <div class="name">Path Cell</div>
+        </div>
+
+        <div class="legendElement">
+            <div class="iconContainer">
+                <div class="icon" ><img id="legendIconLinkinPark" src="media/linkinparklogo.png" alt=""></div>
+            </div>
+            <div class="name">Legend</div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="overlay  hidden"></div>
+
+
 
     <script src="script/handleDropdown.js"></script>
     <script src="script/dataStructures/linkedList.js"></script>
@@ -151,6 +238,7 @@
 
 
     <script src="script/socialMediaIcon.js"></script>
+    <script src="script/handleLegendPopup.js"></script>
 
 </body>
 </html>

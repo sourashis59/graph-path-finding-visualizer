@@ -1,0 +1,171 @@
+.body {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+}
+
+.legendContainer {
+    background: linear-gradient(to top left, hsl(153, 100%, 95%), #bfcbfa);
+
+    position: absolute;
+    z-index: 2;
+
+    top: 0;
+    right: 0;
+
+    margin-top: 2%;
+    margin-right: 2%;
+
+    /* height: 90vh; */
+    width: 45vw;
+
+    border-radius: 5vh;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 0.7vh solid #c291fa;
+
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.legendHeader {
+    /* background-color: white; */
+
+    margin: 2%;
+    margin-bottom: 5vh;
+    font-size: 4vh;
+
+    text-align: center;
+
+    position: relative;
+}
+
+.cross {
+    position: absolute;
+    color: rgb(223, 84, 84);
+    top: 2%;
+    right: 2%;
+
+    width: 5%;
+
+    border-radius: 50%;
+}
+
+.cross:hover {
+    background-color: rgb(255, 155, 155);
+    color: white;
+    cursor: pointer;
+
+    font-weight: 900;
+}
+
+.legendIconContainer {
+    /* background-color: aqua; */
+
+    flex: 1;
+
+    margin: 1%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 6vh;
+
+    padding-bottom: 15vh;
+}
+
+.legendElement {
+    font-size: 2.1vh;
+    font-weight: 560;
+    color: #210169;
+
+    /* background-color: yellow; */
+
+    /* width: 50%; */
+    height: 10%;
+
+    margin-left: 4%;
+
+    display: flex;
+}
+
+.iconContainer {
+    /* background-color: blue; */
+    height: 3vh;
+    width: 3vh;
+
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.icon {
+    height: 100%;
+    width: 100%;
+}
+
+.name {
+    margin-left: 6%;
+}
+
+#visitedCellIcon {
+    background-color: var(--visitedCellColor);
+    border: 0.01rem solid white;
+}
+
+#emptyCellIcon {
+    background-color: white;
+    border: 0.01rem solid var(--cellBorderColor);
+}
+
+#enqueuedCellIcon {
+    background-color: var(--enqueuedCell);
+}
+
+#blockedCellIcon {
+    background-color: var(--blockedCellColor);
+}
+
+#sourceCellIcon {
+    background-color: var(--sourceCellColor);
+    animation: gridCellGlow 1s linear forwards infinite alternate !important;
+}
+
+#destCellIcon {
+    background-color: var(--destCellColor);
+    animation: gridCellGlow 1s linear forwards infinite alternate !important;
+}
+
+#pathCellIcon {
+    background-color: var(--cellInPathColor);
+}
+
+#legendIconLinkinPark {
+    height: 140%;
+    margin: 0;
+    padding: 0;
+}
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+.hidden {
+    display: none;
+}

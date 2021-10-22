@@ -69,7 +69,7 @@ function handleSelectAlgorithmDropdownClick(e) {
             resetStatus();
 
             selectAlgorithmButton.querySelector(".button").innerHTML = "BFS";
-            document.querySelector(".detailsContainer").innerHTML =
+            document.querySelector("#detailText").innerHTML =
                 "Breadth First Search : is unweighted search algorithm and guarantees shortest path  ";
 
             break;
@@ -78,7 +78,7 @@ function handleSelectAlgorithmDropdownClick(e) {
             resetStatus();
 
             selectAlgorithmButton.querySelector(".button").innerHTML = "DFS";
-            document.querySelector(".detailsContainer").innerHTML =
+            document.querySelector("#detailText").innerHTML =
                 "Depth First Search : is unweighted search algorithm and does not guarantee shortest path  ";
 
             break;
@@ -88,7 +88,7 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             selectAlgorithmButton.querySelector(".button").innerHTML =
                 "Bidirectional BFS";
-            document.querySelector(".detailsContainer").innerHTML =
+            document.querySelector("#detailText").innerHTML =
                 "Bidirectional BFS : is unweighted search algorithm and guarantees shortest path  ";
 
             break;
@@ -98,7 +98,7 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             selectAlgorithmButton.querySelector(".button").innerHTML =
                 "Dijkstra";
-            document.querySelector(".detailsContainer").innerHTML =
+            document.querySelector("#detailText").innerHTML =
                 "Dijkstra's algorithm : is weighted search algorithm and guarantees shortest path  ";
 
             break;
@@ -107,7 +107,7 @@ function handleSelectAlgorithmDropdownClick(e) {
             resetStatus();
 
             selectAlgorithmButton.querySelector(".button").innerHTML = "A*";
-            document.querySelector(".detailsContainer").innerHTML =
+            document.querySelector("#detailText").innerHTML =
                 "A* : is weighted search algorithm and guarantees shortest path in case of underestimate  ";
 
             break;
