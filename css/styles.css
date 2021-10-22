@@ -177,15 +177,18 @@ tbody {
 }
 
 .sourceCell {
-    background-color: var(--sourceCellColor);
+    background-color: var(--sourceCellColor) !important;
     border-radius: 50%;
 
-    animation: gridCellGlow 1s linear forwards infinite alternate;
+    animation: gridCellGlow 1s linear forwards infinite alternate !important;
+
+    cursor: grab;
 }
 
 .destCell {
-    background-color: var(--destCellColor);
+    background-color: var(--destCellColor) !important;
     border-radius: 50%;
 
-    animation: gridCellGlow 1s linear forwards infinite alternate;
+    animation: gridCellGlow 1s linear forwards infinite alternate !important;
+    cursor: grab;
 }

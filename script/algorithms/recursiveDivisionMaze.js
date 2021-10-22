@@ -4,12 +4,35 @@ function recursiveDivisionMaze() {
     clearBlockedCells();
 
     let minWidth = (minHeight = 3);
-    for (let j = 0; j < columnSize; j++) makeCellBlocked(gridDiv[0][j]);
-    for (let i = 1; i < rowSize; i++)
-        makeCellBlocked(gridDiv[i][columnSize - 1]);
-    for (let j = columnSize - 2; j >= 0; j--)
-        makeCellBlocked(gridDiv[rowSize - 1][j]);
-    for (let i = rowSize - 2; i >= 1; i--) makeCellBlocked(gridDiv[i][0]);
+    for (let j = 0; j < columnSize; j++) {
+        if (
+            !gridDiv[0][j].classList.contains("sourceCell") &&
+            !gridDiv[0][j].classList.contains("destCell")
+        )
+            makeCellBlocked(gridDiv[0][j]);
+    }
+    for (let i = 1; i < rowSize; i++) {
+        if (
+            !gridDiv[i][columnSize - 1].classList.contains("sourceCell") &&
+            !gridDiv[i][columnSize - 1].classList.contains("destCell")
+        )
+            makeCellBlocked(gridDiv[i][columnSize - 1]);
+    }
+
+    for (let j = columnSize - 2; j >= 0; j--) {
+        if (
+            !gridDiv[rowSize - 1][j].classList.contains("sourceCell") &&
+            !gridDiv[rowSize - 1][j].classList.contains("destCell")
+        )
+            makeCellBlocked(gridDiv[rowSize - 1][j]);
+    }
+    for (let i = rowSize - 2; i >= 1; i--) {
+        if (
+            !gridDiv[i][0].classList.contains("sourceCell") &&
+            !gridDiv[i][0].classList.contains("destCell")
+        )
+            makeCellBlocked(gridDiv[i][0]);
+    }
 
     let topLeftCell = { row: 1, column: 1 };
 
@@ -50,11 +73,11 @@ function recursiveDivisionMaze() {
             return;
 
         let midRow = Math.floor((x1 + x2) / 2);
-        if (midRow === sourceRowColumn.row || midRow === destRowColumn.row)
+        while (midRow === sourceRowColumn.row || midRow === destRowColumn.row)
             midRow++;
 
         let midColumn = Math.floor((y1 + y2) / 2);
-        if (
+        while (
             midColumn === sourceRowColumn.column ||
             midColumn === destRowColumn.column
         )

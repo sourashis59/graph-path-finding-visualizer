@@ -27,7 +27,11 @@ const directions = [
 const gridContainer = document.querySelector(".gridContainer");
 const gridTable = document.querySelector(".gridTable");
 
-let mouseIsPressed = false;
+let mouseIsPressedForBlockingCell = false;
+let mouseIsPressedForDraggingSource = false;
+let mouseIsPressedForDraggingDest = false;
+let prevSourceCellDiv;
+let prevDestCellDiv;
 
 //will get value when drawBoard() is executed
 let gridCellList = [];
@@ -93,25 +97,66 @@ function drawGrids() {
     gridVal[destRow][destColumn] = destCellVal;
     //set source and destination_____________________________________
 
-    gridCellList = document.querySelectorAll(".gridCell");
-
     //*Add event listners to each cell :)
+    addBlockCellEventListners();
 
-    for (let i = 0; i < gridCellList.length; i++) {
-        //*Make a cell blocked or empty_________________________________________________________
-        gridCellList[i].addEventListener(
-            "mousedown",
-            handleGridCellOnMouseDown
-        );
-        gridCellList[i].addEventListener(
-            "mouseenter",
-            handleGridCellMouseEnter
-        );
+    //*add drag and drop event listners to source and destination cells
 
-        gridCellList[i].addEventListener("mouseup", handleGridCellOnMouseUp);
-    }
+    // gridDiv[sourceRow][sourceColumn].addEventListener(
+    //     "mouseup",
+    //     handleSourceCellMouseUp
+    // );
 }
 
+function addBlockCellEventListners() {
+    for (let i = 0; i < rowSize; i++) {
+        for (let j = 0; j < columnSize; j++) {
+            //*Toggle Cell block _______________________________________________________________
+            gridDiv[i][j].addEventListener(
+                "mousedown",
+                handleGridCellOnMouseDown
+            );
+
+            gridDiv[i][j].addEventListener(
+                "mouseenter",
+                handleGridCellMouseEnter
+            );
+
+            gridDiv[i][j].addEventListener("mouseup", handleGridCellOnMouseUp);
+            //*Toggle Cell block _______________________________________________________________
+
+            //*Source Cell deag and drop_______________________________________________________________________________________________________
+            gridDiv[i][j].addEventListener(
+                "mousedown",
+                handleSourceCellDragAndDropMouseDown
+            );
+            gridDiv[i][j].addEventListener(
+                "mouseenter",
+                handleSourceCellDragAndDropMouseEnter
+            );
+            gridDiv[i][j].addEventListener(
+                "mouseup",
+                handleSourceCellDragAndDropMouseUp
+            );
+            //*Source Cell deag and drop_______________________________________________________________________________________________________
+
+            //*Dest Cell deag and drop_________________________________________________________
+            gridDiv[i][j].addEventListener(
+                "mousedown",
+                handleDestCellDragAndDropMouseDown
+            );
+            gridDiv[i][j].addEventListener(
+                "mouseenter",
+                handleDestCellDragAndDropMouseEnter
+            );
+            gridDiv[i][j].addEventListener(
+                "mouseup",
+                handleDestCellDragAndDropMouseUp
+            );
+            //*Dest Cell deag and drop_________________________________________________________
+        }
+    }
+}
 function findPathFunction() {
     let returnedObj;
 
@@ -195,14 +240,14 @@ function handleGridCellOnMouseDown(e) {
     let cellDiv = e.target;
     // console.log(`Mouse down on ${cellDiv} `);
 
-    mouseIsPressed = true;
-
     if (
         !isSourceCell(cellDiv) &&
         !isDestinationCell(cellDiv) &&
         cellBlockToggleAllowed
-    )
+    ) {
+        mouseIsPressedForBlockingCell = true;
         toggleCellBlock(cellDiv);
+    }
 }
 
 function handleGridCellMouseEnter(e) {
@@ -210,7 +255,7 @@ function handleGridCellMouseEnter(e) {
 
     if (!cellBlockToggleAllowed) cellDiv.style.cursor = "not-allowed";
     if (
-        mouseIsPressed &&
+        mouseIsPressedForBlockingCell &&
         !isSourceCell(cellDiv) &&
         !isDestinationCell(cellDiv) &&
         cellBlockToggleAllowed
@@ -221,9 +266,96 @@ function handleGridCellMouseEnter(e) {
 function handleGridCellOnMouseUp(e) {
     let cell = e.target;
     // console.log(`Mouse up on ${cell} `);
-    mouseIsPressed = false;
+    mouseIsPressedForBlockingCell = false;
+}
+
+function handleSourceCellDragAndDropMouseDown(e) {
+    let cellDiv = e.target;
+
+    if (isSourceCell(cellDiv) && cellBlockToggleAllowed) {
+        console.log("source cell mouse down");
+
+        mouseIsPressedForDraggingSource = true;
+        prevSourceCellDiv = cellDiv;
+    }
+}
+
+function handleSourceCellDragAndDropMouseEnter(e) {
+    let cellDiv = e.target;
+
+    // console.log("mouse entered source cell drag");
+
+    if (mouseIsPressedForDraggingSource && cellBlockToggleAllowed) {
+        // console.log(cellDiv);
+        if (
+            cellDiv.classList.contains("emptyCell") &&
+            !cellDiv.classList.contains("destCell")
+        ) {
+            prevSourceCellDiv.classList.remove("sourceCell");
+
+            cellDiv.classList.add("sourceCell");
+            sourceRowColumn = getRowColumn(cellDiv);
+
+            prevSourceCellDiv = cellDiv;
+        } else {
+            cellDiv.style.cursor = "no-drop";
+        }
+    }
+}
+
+function handleSourceCellDragAndDropMouseUp(e) {
+    let cell = e.target;
+    // console.log(`Mouse up on ${cell} `);
+    mouseIsPressedForDraggingSource = false;
+}
+
+function handleDestCellDragAndDropMouseDown(e) {
+    let cellDiv = e.target;
+
+    if (isDestinationCell(cellDiv) && cellBlockToggleAllowed) {
+        console.log("dest cell mouse down");
+
+        mouseIsPressedForDraggingDest = true;
+        prevDestCellDiv = cellDiv;
+    }
+}
+
+function handleDestCellDragAndDropMouseEnter(e) {
+    let cellDiv = e.target;
+
+    // console.log("mouse entered dest cell drag");
+
+    if (mouseIsPressedForDraggingDest && cellBlockToggleAllowed) {
+        // console.log(cellDiv);
+        if (
+            cellDiv.classList.contains("emptyCell") &&
+            !cellDiv.classList.contains("sourceCell")
+        ) {
+            prevDestCellDiv.classList.remove("destCell");
+
+            cellDiv.classList.add("destCell");
+            destRowColumn = getRowColumn(cellDiv);
+
+            prevDestCellDiv = cellDiv;
+        } else {
+            cellDiv.style.cursor = "no-drop";
+        }
+    }
+}
+
+function handleDestCellDragAndDropMouseUp(e) {
+    let cellDiv = e.target;
+    // console.log(`Mouse up on ${cell} `);
+    mouseIsPressedForDraggingDest = false;
 }
 
 //*event listners_______________________________________________________________________
 
+//this is to remove bug from drag and drop feature of source and dest cell while clicking on reset button while dragging
+window.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("gridCell")) {
+        mouseIsPressedForDraggingDest = false;
+        mouseIsPressedForDraggingSource = false;
+    }
+});
 //*___________________________________________
