@@ -112,6 +112,16 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             break;
 
+        case "GREEDY_BEST_FIRST_SEARCH_BUTTON":
+            resetStatus();
+
+            selectAlgorithmButton.querySelector(".button").innerHTML =
+                "Greedy Best First Search";
+            document.querySelector("#detailText").innerHTML =
+                "Greedy Best First Search: is weighted search algorithm and DOES NOT guarantee shortest path";
+
+            break;
+
         case "None":
             selectAlgorithmButton.querySelector(".button").innerHTML =
                 "Select Algorithm :)";

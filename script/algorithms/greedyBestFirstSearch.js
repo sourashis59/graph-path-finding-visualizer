@@ -1,5 +1,5 @@
-function DIJKSTRA_FindPath() {
-    console.log("Dijkstra function called");
+function GREEDY_BEST_FIRST_SEARCH_FindPath() {
+    console.log("Greedy Best First Search function called");
 
     let visited = make2DArray(rowSize, columnSize);
     let parent = make2DArray(rowSize, columnSize);
@@ -18,11 +18,11 @@ function DIJKSTRA_FindPath() {
     };
     distance[sourceRowColumn.row][sourceRowColumn.column] = 0;
 
-    const minPQ = new PriorityQueue(comparatorDijkstraPriorityQueue);
+    const minPQ = new PriorityQueue(comparatorGreedyBFSPriorityQueue);
     minPQ.push({
         row: sourceRowColumn.row,
         column: sourceRowColumn.column,
-        distance: 0,
+        h_val: getHeuristic(sourceRowColumn.row, sourceRowColumn.column),
     });
 
     while (!minPQ.isEmpty()) {
@@ -42,9 +42,7 @@ function DIJKSTRA_FindPath() {
             let y = j + directions[k][1];
 
             if (isSafe(x, y)) {
-                let newDist = u.distance + getWeight(x, y);
-
-                let v = { row: x, column: y, distance: newDist };
+                let newDist = distance[u.row][u.column] + getWeight(x, y);
 
                 if (!isCellBlocked(gridDiv[x][y]) && !visited[x][y]) {
                     if (newDist < distance[x][y]) {
@@ -52,7 +50,13 @@ function DIJKSTRA_FindPath() {
                         distance[x][y] = newDist;
                         // console.log(`emqueued : (${x} , ${y})`);
 
+                        let v = {
+                            row: x,
+                            column: y,
+                            h_val: getHeuristic(x, y),
+                        };
                         minPQ.push(v);
+
                         enqueuedCellVisualize(gridDiv[x][y]);
                     }
                 }
@@ -74,7 +78,13 @@ function DIJKSTRA_FindPath() {
         else return Number(gridVal[i][j]);
     }
 
-    function comparatorDijkstraPriorityQueue(a, b) {
-        return a.distance <= b.distance;
+    function getHeuristic(i, j) {
+        return (
+            Math.abs(i - destRowColumn.row) + Math.abs(j - destRowColumn.column)
+        );
+    }
+
+    function comparatorGreedyBFSPriorityQueue(a, b) {
+        return a.h_val <= b.h_val;
     }
 }

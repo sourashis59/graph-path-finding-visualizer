@@ -200,6 +200,12 @@ function findPathFunction() {
                 returnedObj = A_STAR_FindPath();
                 break;
 
+            case "GREEDY_BEST_FIRST_SEARCH_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = GREEDY_BEST_FIRST_SEARCH_FindPath();
+                break;
+
             default:
                 alert("error in selecting algorithm");
         }
