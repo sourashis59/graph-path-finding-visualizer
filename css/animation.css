@@ -101,3 +101,17 @@
         border: 0.01rem solid var(--cellInPathColor);
     }
 }
+
+@keyframes rotateIconAnimation {
+    0% {
+        opacity: 100%;
+    }
+
+    50% {
+        opacity: 60%;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 100%;
+    }
+}

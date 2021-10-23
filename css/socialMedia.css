@@ -16,9 +16,17 @@
     height: 50%;
     /* padding-right: 1%; */
     margin-right: 2%;
+
+    border-radius: 50%;
+
+    opacity: 70%;
+    transition: 200ms height, 700ms box-shadow, 200ms opacity;
 }
 
 .socialMediaIcon:hover {
+    opacity: 100%;
+
     height: 55%;
     cursor: pointer;
+    box-shadow: 0 2px 70px 0 white;
 }

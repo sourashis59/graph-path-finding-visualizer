@@ -15,6 +15,7 @@
 
 .legendContainer {
     background: linear-gradient(to top left, hsl(153, 100%, 95%), #bfcbfa);
+    box-shadow: 2px 5px 60px 0 rgb(248, 92, 235);
 
     position: absolute;
     z-index: 2;
@@ -45,6 +46,8 @@
     margin: 2%;
     margin-bottom: 5vh;
     font-size: 4vh;
+
+    color: #7e12a8;
 
     text-align: center;
 
