@@ -5,6 +5,7 @@ const findPathButton = document.querySelector("#findPathButton");
 const resetButton = document.querySelector("#resetButton");
 
 const clearPathButton = document.querySelector("#clearPathButton");
+const clearWallsButton = document.querySelector("#clearWallsButton");
 
 const canBeDisabledButtons = document.querySelectorAll(".canBeDisabled");
 
@@ -28,7 +29,7 @@ function handleResetButton() {
 }
 
 function handleClearPathButton(e) {
-    console.log("Clear Path button clicked");
+    // console.log("Clear Path button clicked");
 
     if (!e.target.classList.contains("disabledButton")) {
         resetEmptyCells();
@@ -36,6 +37,12 @@ function handleClearPathButton(e) {
     }
 }
 
+function handleClearWallsButton(e) {
+    if (!e.target.classList.contains("disabledButton")) {
+        // console.log("Clear Walls button called");
+        clearBlockedCells();
+    }
+}
 //*Event listners______________________________________________________________
 
 findPathButton.addEventListener("click", handleFindPathButtonClick);
@@ -43,6 +50,7 @@ findPathButton.addEventListener("click", handleFindPathButtonClick);
 resetButton.addEventListener("click", handleResetButton);
 
 clearPathButton.addEventListener("click", handleClearPathButton);
+clearWallsButton.addEventListener("click", handleClearWallsButton);
 
 gridSizeInputElement.addEventListener("input", updateGridSize);
 speedInputElement.addEventListener("input", updateSpeed);
