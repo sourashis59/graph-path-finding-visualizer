@@ -23,7 +23,7 @@ function Bidirectional_BFS_FindPath() {
     qSource.enqueue(sourceRowColumn);
     qDest.enqueue(destRowColumn);
 
-    while (!qSource.isEmpty() || !qDest.isEmpty()) {
+    while (!qSource.isEmpty() && !qDest.isEmpty()) {
         if (!qSource.isEmpty()) {
             let uSource = qSource.dequeue();
 
