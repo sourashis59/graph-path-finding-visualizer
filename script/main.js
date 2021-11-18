@@ -212,6 +212,12 @@ function findPathFunction() {
                 returnedObj = BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath();
                 break;
 
+            case "BIDIRECTIONAL_A_STAR_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = BIDIRECTIONAL_A_STAR_FindPath();
+                break;
+
             default:
                 alert("error in selecting algorithm");
         }
@@ -219,7 +225,9 @@ function findPathFunction() {
         if (returnedObj.destFound) {
             if (
                 selectedAlgo === "BIDIRECTIONAL_BFS_BUTTON" ||
-                selectedAlgo === "BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON"
+                selectedAlgo ===
+                    "BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON" ||
+                selectedAlgo === "BIDIRECTIONAL_A_STAR_BUTTON"
             ) {
                 visualizePath(
                     returnedObj.parentSource,
@@ -240,6 +248,9 @@ function findPathFunction() {
                 );
 
             updateStatus("pathFound");
+
+            if (returnedObj.totalCost)
+                console.log("Total Cost : " + returnedObj.totalCost);
         } else {
             console.log("dest not found");
             updateStatus("pathNotFound");

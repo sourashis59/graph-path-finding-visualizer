@@ -132,6 +132,16 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             break;
 
+        case "BIDIRECTIONAL_A_STAR_BUTTON":
+            resetStatus();
+
+            selectAlgorithmButton.querySelector(".button").innerHTML =
+                "Bidirectional A Star";
+            document.querySelector("#detailText").innerHTML =
+                "Bidirectional A Star : is weighted search algorithm and guarantees shortest path  ";
+
+            break;
+
         case "None":
             selectAlgorithmButton.querySelector(".button").innerHTML =
                 "Select Algorithm :)";

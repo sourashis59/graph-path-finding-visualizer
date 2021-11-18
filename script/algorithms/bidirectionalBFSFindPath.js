@@ -7,6 +7,9 @@ function Bidirectional_BFS_FindPath() {
     let parentSource = make2DArray(rowSize, columnSize);
     let parentDest = make2DArray(rowSize, columnSize);
 
+    let distanceSource = make2DArray(rowSize, columnSize);
+    let distanceDest = make2DArray(rowSize, columnSize);
+
     for (let i = 0; i < rowSize; i++) {
         for (let j = 0; j < columnSize; j++) {
             visitedSource[i][j] = false;
@@ -14,8 +17,14 @@ function Bidirectional_BFS_FindPath() {
 
             parentSource[i][j] = { row: -1, column: -1 };
             parentDest[i][j] = { row: -1, column: -1 };
+
+            distanceSource[i][j] = Infinity;
+            distanceDest[i][j] = Infinity;
         }
     }
+
+    distanceSource[sourceRowColumn.row][sourceRowColumn.column] = 0;
+    distanceDest[destRowColumn.row][destRowColumn.column] = 0;
 
     const qSource = new Queue();
     const qDest = new Queue();
@@ -39,6 +48,7 @@ function Bidirectional_BFS_FindPath() {
                     parentSource: parentSource,
                     parentDest: parentDest,
                     meetingPoint: { row: i, column: j },
+                    totalCost: distanceSource[i][j] + distanceDest[i][j],
                 };
 
             if (visitedDest[i][j])
@@ -47,6 +57,7 @@ function Bidirectional_BFS_FindPath() {
                     parentSource: parentSource,
                     parentDest: parentDest,
                     meetingPoint: { row: i, column: j },
+                    totalCost: distanceSource[i][j] + distanceDest[i][j],
                 };
 
             for (let k = 0; k < directions.length; k++) {
@@ -62,6 +73,7 @@ function Bidirectional_BFS_FindPath() {
                 ) {
                     visitedSource[x][y] = true;
                     parentSource[x][y] = uSource;
+                    distanceSource[x][y] = distanceSource[i][j] + 1;
 
                     // console.log(`emqueued : (${x} , ${y})`);
 
@@ -86,6 +98,7 @@ function Bidirectional_BFS_FindPath() {
                     parentSource: parentSource,
                     parentDest: parentDest,
                     meetingPoint: { row: i, column: j },
+                    totalCost: distanceSource[i][j] + distanceDest[i][j],
                 };
 
             if (visitedSource[i][j]) {
@@ -94,6 +107,7 @@ function Bidirectional_BFS_FindPath() {
                     parentSource: parentSource,
                     parentDest: parentDest,
                     meetingPoint: { row: i, column: j },
+                    totalCost: distanceSource[i][j] + distanceDest[i][j],
                 };
             }
 
@@ -110,6 +124,7 @@ function Bidirectional_BFS_FindPath() {
                 ) {
                     visitedDest[x][y] = true;
                     parentDest[x][y] = uDest;
+                    distanceDest[x][y] = distanceDest[i][j] + 1;
 
                     // console.log(`emqueued : (${x} , ${y})`);
 

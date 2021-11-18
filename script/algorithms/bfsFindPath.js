@@ -3,12 +3,17 @@ function BFS_FindPath() {
 
     let visited = make2DArray(rowSize, columnSize);
     let parent = make2DArray(rowSize, columnSize);
+    let distance = make2DArray(rowSize, columnSize);
+
     for (let i = 0; i < rowSize; i++) {
         for (let j = 0; j < columnSize; j++) {
             visited[i][j] = false;
             parent[i][j] = { row: -1, column: -1 };
+            distance[i][j] = Infinity;
         }
     }
+
+    distance[sourceRowColumn.row][sourceRowColumn.column] = 0;
 
     const q = new Queue();
 
@@ -22,7 +27,11 @@ function BFS_FindPath() {
         // console.log(`dequeued : (${i} , ${j})`);
 
         if (areRowColumnObjectsEqual(u, destRowColumn))
-            return { destFound: true, parent: parent };
+            return {
+                destFound: true,
+                parent: parent,
+                totalCost: distance[i][j],
+            };
 
         visited[i][j] = true;
         visitedCellVisualize(gridDiv[i][j]);
@@ -36,6 +45,7 @@ function BFS_FindPath() {
             if (isSafe(x, y) && isCellEmpty(gridDiv[x][y]) && !visited[x][y]) {
                 visited[x][y] = true;
                 parent[x][y] = u;
+                distance[x][y] = distance[i][j] + 1;
 
                 // console.log(`emqueued : (${x} , ${y})`);
 

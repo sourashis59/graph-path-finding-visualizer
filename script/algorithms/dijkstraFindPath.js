@@ -31,7 +31,11 @@ function DIJKSTRA_FindPath() {
         let { row: i, column: j } = u;
 
         if (areRowColumnObjectsEqual({ row: i, column: j }, destRowColumn))
-            return { destFound: true, parent: parent };
+            return {
+                destFound: true,
+                parent: parent,
+                totalCost: distance[i][j],
+            };
 
         visited[i][j] = true;
         visitedCellVisualize(gridDiv[i][j]);

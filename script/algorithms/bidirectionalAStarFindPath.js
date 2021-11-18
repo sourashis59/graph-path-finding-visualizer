@@ -1,5 +1,5 @@
-function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
-    console.log("Greedy Best First Search function called");
+function BIDIRECTIONAL_A_STAR_FindPath() {
+    console.log("A* function called");
 
     let visitedSource = make2DArray(rowSize, columnSize);
     let parentSource = make2DArray(rowSize, columnSize);
@@ -35,18 +35,18 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
     distanceSource[sourceRowColumn.row][sourceRowColumn.column] = 0;
     distanceDest[destRowColumn.row][destRowColumn.column] = 0;
 
-    const minPQSource = new PriorityQueue(comparatorGreedyBFSPriorityQueue);
-    const minPQDest = new PriorityQueue(comparatorGreedyBFSPriorityQueue);
+    const minPQSource = new PriorityQueue(comparatorAStarPriorityQueue);
+    const minPQDest = new PriorityQueue(comparatorAStarPriorityQueue);
 
     minPQSource.push({
         row: sourceRowColumn.row,
         column: sourceRowColumn.column,
-        h_val: getHeuristic(sourceRowColumn, destRowColumn),
+        f_val: 0 + getHeuristic(sourceRowColumn, destRowColumn),
     });
     minPQDest.push({
         row: destRowColumn.row,
         column: destRowColumn.column,
-        h_val: getHeuristic(destRowColumn, sourceRowColumn),
+        f_val: getHeuristic(destRowColumn, sourceRowColumn),
     });
 
     while (!minPQSource.isEmpty() && !minPQDest.isEmpty()) {
@@ -54,6 +54,8 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
             let u = minPQSource.pop();
 
             let { row: i, column: j } = u;
+
+            if (visitedSource[i][j]) continue;
 
             visitedSource[i][j] = true;
             visitedCellVisualize(gridDiv[i][j]);
@@ -82,8 +84,7 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
                 let y = j + directions[k][1];
 
                 if (isSafe(x, y)) {
-                    let newDist =
-                        distanceSource[u.row][u.column] + getWeight(x, y);
+                    let newDist = distanceSource[i][j] + getWeight(x, y);
 
                     if (!isCellBlocked(gridDiv[x][y]) && !visitedSource[x][y]) {
                         if (newDist < distanceSource[x][y]) {
@@ -91,16 +92,20 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
                             distanceSource[x][y] = newDist;
                             // console.log(`emqueued : (${x} , ${y})`);
 
+                            let newEstimatedDistance =
+                                distanceSource[x][y] +
+                                getHeuristic(
+                                    { row: x, column: y },
+                                    destRowColumn
+                                );
+
                             let v = {
                                 row: x,
                                 column: y,
-                                h_val: getHeuristic(
-                                    { row: x, column: y },
-                                    destRowColumn
-                                ),
+                                f_val: newEstimatedDistance,
                             };
-                            minPQSource.push(v);
 
+                            minPQSource.push(v);
                             enqueuedCellVisualize(gridDiv[x][y]);
                         }
                     }
@@ -112,6 +117,8 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
             let u = minPQDest.pop();
 
             let { row: i, column: j } = u;
+
+            if (visitedDest[i][j]) continue;
 
             visitedDest[i][j] = true;
             visitedCellVisualize(gridDiv[i][j]);
@@ -142,8 +149,7 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
                 let y = j + directions[k][1];
 
                 if (isSafe(x, y)) {
-                    let newDist =
-                        distanceDest[u.row][u.column] + getWeight(x, y);
+                    let newDist = distanceDest[i][j] + getWeight(x, y);
 
                     if (!isCellBlocked(gridDiv[x][y]) && !visitedDest[x][y]) {
                         if (newDist < distanceDest[x][y]) {
@@ -151,16 +157,20 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
                             distanceDest[x][y] = newDist;
                             // console.log(`emqueued : (${x} , ${y})`);
 
+                            let newEstimatedDistance =
+                                distanceDest[x][y] +
+                                getHeuristic(
+                                    { row: x, column: y },
+                                    sourceRowColumn
+                                );
+
                             let v = {
                                 row: x,
                                 column: y,
-                                h_val: getHeuristic(
-                                    { row: x, column: y },
-                                    sourceRowColumn
-                                ),
+                                f_val: newEstimatedDistance,
                             };
-                            minPQDest.push(v);
 
+                            minPQDest.push(v);
                             enqueuedCellVisualize(gridDiv[x][y]);
                         }
                     }
@@ -171,7 +181,21 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
 
     return { destFound: false, parent: parent };
 
-    //*function definitions_______________________________________________________________________________________________
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //*Helper function definitions:
 
     function getWeight(i, j) {
         if (
@@ -190,7 +214,7 @@ function BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath() {
         );
     }
 
-    function comparatorGreedyBFSPriorityQueue(a, b) {
-        return a.h_val <= b.h_val;
+    function comparatorAStarPriorityQueue(a, b) {
+        return a.f_val <= b.f_val;
     }
 }

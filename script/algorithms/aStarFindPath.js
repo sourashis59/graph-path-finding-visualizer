@@ -1,21 +1,3 @@
-function getWeight(i, j) {
-    if (
-        gridVal[i][j] === emptyCellVal ||
-        gridVal[i][j] === sourceCellVal ||
-        gridVal[i][j] === destCellVal
-    )
-        return 1;
-    else return Number(gridVal[i][j]);
-}
-
-function getHeuristic(i, j) {
-    return Math.abs(i - destRowColumn.row) + Math.abs(j - destRowColumn.column);
-}
-
-function comparatorAStarPriorityQueue(a, b) {
-    return a.f_val <= b.f_val;
-}
-
 function A_STAR_FindPath() {
     console.log("A* function called");
 
@@ -51,7 +33,11 @@ function A_STAR_FindPath() {
         if (visited[i][j]) continue;
 
         if (areRowColumnObjectsEqual({ row: i, column: j }, destRowColumn))
-            return { destFound: true, parent: parent };
+            return {
+                destFound: true,
+                parent: parent,
+                totalCost: distance[i][j],
+            };
 
         visited[i][j] = true;
         visitedCellVisualize(gridDiv[i][j]);
@@ -88,4 +74,42 @@ function A_STAR_FindPath() {
     }
 
     return { destFound: false, parent: parent };
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //*HElper function definitions:
+
+    function getWeight(i, j) {
+        if (
+            gridVal[i][j] === emptyCellVal ||
+            gridVal[i][j] === sourceCellVal ||
+            gridVal[i][j] === destCellVal
+        )
+            return 1;
+        else return Number(gridVal[i][j]);
+    }
+
+    function getHeuristic(i, j) {
+        return (
+            Math.abs(i - destRowColumn.row) + Math.abs(j - destRowColumn.column)
+        );
+    }
+
+    function comparatorAStarPriorityQueue(a, b) {
+        return a.f_val <= b.f_val;
+    }
 }
