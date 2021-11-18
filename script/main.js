@@ -182,12 +182,6 @@ function findPathFunction() {
                 returnedObj = DFS_FindPath();
                 break;
 
-            case "BIDIRECTIONAL_BFS_BUTTON":
-                updateStatus("findingPath");
-
-                returnedObj = Bidirectional_BFS_FindPath();
-                break;
-
             case "DIJKSTRA_BUTTON":
                 updateStatus("findingPath");
 
@@ -206,12 +200,27 @@ function findPathFunction() {
                 returnedObj = GREEDY_BEST_FIRST_SEARCH_FindPath();
                 break;
 
+            case "BIDIRECTIONAL_BFS_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = Bidirectional_BFS_FindPath();
+                break;
+
+            case "BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON":
+                updateStatus("findingPath");
+
+                returnedObj = BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_FindPath();
+                break;
+
             default:
                 alert("error in selecting algorithm");
         }
 
         if (returnedObj.destFound) {
-            if (selectedAlgo === "BIDIRECTIONAL_BFS_BUTTON") {
+            if (
+                selectedAlgo === "BIDIRECTIONAL_BFS_BUTTON" ||
+                selectedAlgo === "BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON"
+            ) {
                 visualizePath(
                     returnedObj.parentSource,
                     sourceRowColumn,

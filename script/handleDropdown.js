@@ -83,16 +83,6 @@ function handleSelectAlgorithmDropdownClick(e) {
 
             break;
 
-        case "BIDIRECTIONAL_BFS_BUTTON":
-            resetStatus();
-
-            selectAlgorithmButton.querySelector(".button").innerHTML =
-                "Bidirectional BFS";
-            document.querySelector("#detailText").innerHTML =
-                "Bidirectional BFS : is unweighted search algorithm and guarantees shortest path  ";
-
-            break;
-
         case "DIJKSTRA_BUTTON":
             resetStatus();
 
@@ -119,6 +109,26 @@ function handleSelectAlgorithmDropdownClick(e) {
                 "Greedy Best First Search";
             document.querySelector("#detailText").innerHTML =
                 "Greedy Best First Search: is weighted search algorithm and DOES NOT guarantee shortest path";
+
+            break;
+
+        case "BIDIRECTIONAL_BFS_BUTTON":
+            resetStatus();
+
+            selectAlgorithmButton.querySelector(".button").innerHTML =
+                "Bidirectional BFS";
+            document.querySelector("#detailText").innerHTML =
+                "Bidirectional BFS : is unweighted search algorithm and guarantees shortest path  ";
+
+            break;
+
+        case "BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON":
+            resetStatus();
+
+            selectAlgorithmButton.querySelector(".button").innerHTML =
+                "Bidirectional Greedy Best First Search";
+            document.querySelector("#detailText").innerHTML =
+                "Bidirectional Greedy Best First Search : is weighted search algorithm and does not guarantee shortest path  ";
 
             break;
 

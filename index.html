@@ -25,7 +25,7 @@
         <div class="inputContainer">
             <div id="gridSizeInputContainer">
                 <p>Grid Size : </p>
-                <input type="range" class="canBeDisabled" id="gridSizeInput" min=5 max=50 step=1 value=30>
+                <input type="range" class="canBeDisabled" id="gridSizeInput" min=5 max=50 step=1 value=35>
             </div>
 
             <div id="speedInputContainer">
@@ -53,12 +53,7 @@
 
             <div class=" button canBeDisabled  "  id="findPathButton">Find Path</div>
 
-            <div class="button "  id="resetButton">Reset</div>
-
-            <div class=" button  canBeDisabled canBeEnabledWithoutReset" id="clearPathButton">Clear Path</div>
-
-            <div class=" button  canBeDisabled " id="clearWallsButton">Clear Walls</div>
-
+         
 
 
             <div id="selectAlgorithmButton" class = "dropdownButtonContainer">
@@ -67,28 +62,36 @@
                             <ul class="dropdown hiddenDropdown" id = "selectAlgorithmDropdown">
                                 <div class="dropdown-item" id = "BFS_BUTTON">BFS</div>
                                 <div class="dropdown-item" id = "DFS_BUTTON">DFS</div>
-                                <div class="dropdown-item" id="BIDIRECTIONAL_BFS_BUTTON">Bidirectional BFS</div>
                                 <div class="dropdown-item" id = "DIJKSTRA_BUTTON">Dijkstra</div>
                                 <div class="dropdown-item" id="GREEDY_BEST_FIRST_SEARCH_BUTTON">Greedy Best First Search</div>
                                 <div class="dropdown-item" id = "A_STAR_BUTTON">A Star</div>
+                                <div class="dropdown-item" id="BIDIRECTIONAL_BFS_BUTTON">Bidirectional BFS</div>
+                                <div class="dropdown-item" id="BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON">Bidirectional Greedy Best First Search</div>
+
                             </ul>
             </div>
-
-
-
 
 
             <div id="selectMazeButton" class="dropdownButtonContainer">
                 <div class="button canBeDisabled">
                     Generate Maze
                 </div>
-                <ul class="dropdown hiddenDropdown" id = "generateMazeDropdown">
-                    <div class="dropdown-item" id = "simpleRandomMaze">Simple Random Maze</div>
-                    <div class="dropdown-item" id ="recursiveDivisionMaze">Recursive Division Maze</div>
+                <ul class="dropdown hiddenDropdown" id="generateMazeDropdown">
+                    <div class="dropdown-item" id="simpleRandomMaze">Simple Random Maze</div>
+                    <div class="dropdown-item" id="recursiveDivisionMaze">Recursive Division Maze</div>
                     <!-- <div class="dropdown-item">Maze 3</div>
-                    <div class="dropdown-item">Maze 4</div> -->
+                                <div class="dropdown-item">Maze 4</div> -->
                 </ul>
             </div>
+
+
+            <div class="button " id="resetButton">Reset</div>
+
+            <div class=" button  canBeDisabled canBeEnabledWithoutReset" id="clearPathButton">Clear Path</div>
+
+            <div class=" button  canBeDisabled " id="clearWallsButton">Clear Walls</div>
+
+
 
 
 
@@ -231,10 +234,11 @@
     <script src="script/handleButton.js"></script>
     <script src="script/algorithms/bfsFindPath.js"></script>
     <script src="script/algorithms/dfsFindPath.js"></script>
-    <script src="script/algorithms/bidirectionalBFSFindPath.js"></script>
     <script src="script/algorithms/dijkstraFindPath.js"></script>
     <script src="script/algorithms/aStarFindPath.js"></script>
     <script src="script/algorithms/greedyBestFirstSearch.js"></script>
+    <script src="script/algorithms/bidirectionalBFSFindPath.js"></script>
+    <script src="script/algorithms/bidirectionalGreedyBestFirstSearch.js"></script>
 
 
     <script src="script/algorithms/simpleRandomMaze.js"></script>
