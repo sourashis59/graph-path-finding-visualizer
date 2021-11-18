@@ -1,220 +1,222 @@
-function BIDIRECTIONAL_A_STAR_FindPath() {
-    console.log("A* function called");
+// * NOT WORKING PROPERLY : NOT GETTIN GOPTIMAL SOLUTION IN SOME CASES
 
-    let visitedSource = make2DArray(rowSize, columnSize);
-    let parentSource = make2DArray(rowSize, columnSize);
+// function BIDIRECTIONAL_A_STAR_FindPath() {
+//     console.log("Bidirectional A* function called");
 
-    let visitedDest = make2DArray(rowSize, columnSize);
-    let parentDest = make2DArray(rowSize, columnSize);
+//     let visitedSource = make2DArray(rowSize, columnSize);
+//     let parentSource = make2DArray(rowSize, columnSize);
 
-    let distanceSource = make2DArray(rowSize, columnSize);
-    let distanceDest = make2DArray(rowSize, columnSize);
+//     let visitedDest = make2DArray(rowSize, columnSize);
+//     let parentDest = make2DArray(rowSize, columnSize);
 
-    for (let i = 0; i < rowSize; i++) {
-        for (let j = 0; j < columnSize; j++) {
-            visitedSource[i][j] = false;
-            visitedDest[i][j] = false;
+//     let distanceSource = make2DArray(rowSize, columnSize);
+//     let distanceDest = make2DArray(rowSize, columnSize);
 
-            parentSource[i][j] = { row: -1, column: -1 };
-            parentDest[i][j] = { row: -1, column: -1 };
+//     for (let i = 0; i < rowSize; i++) {
+//         for (let j = 0; j < columnSize; j++) {
+//             visitedSource[i][j] = false;
+//             visitedDest[i][j] = false;
 
-            distanceSource[i][j] = Infinity;
-            distanceDest[i][j] = Infinity;
-        }
-    }
+//             parentSource[i][j] = { row: -1, column: -1 };
+//             parentDest[i][j] = { row: -1, column: -1 };
 
-    parentSource[sourceRowColumn.row][sourceRowColumn.column] = {
-        row: -1,
-        column: -1,
-    };
-    parentDest[sourceRowColumn.row][sourceRowColumn.column] = {
-        row: -1,
-        column: -1,
-    };
+//             distanceSource[i][j] = Infinity;
+//             distanceDest[i][j] = Infinity;
+//         }
+//     }
 
-    distanceSource[sourceRowColumn.row][sourceRowColumn.column] = 0;
-    distanceDest[destRowColumn.row][destRowColumn.column] = 0;
+//     parentSource[sourceRowColumn.row][sourceRowColumn.column] = {
+//         row: -1,
+//         column: -1,
+//     };
+//     parentDest[sourceRowColumn.row][sourceRowColumn.column] = {
+//         row: -1,
+//         column: -1,
+//     };
 
-    const minPQSource = new PriorityQueue(comparatorAStarPriorityQueue);
-    const minPQDest = new PriorityQueue(comparatorAStarPriorityQueue);
+//     distanceSource[sourceRowColumn.row][sourceRowColumn.column] = 0;
+//     distanceDest[destRowColumn.row][destRowColumn.column] = 0;
 
-    minPQSource.push({
-        row: sourceRowColumn.row,
-        column: sourceRowColumn.column,
-        f_val: 0 + getHeuristic(sourceRowColumn, destRowColumn),
-    });
-    minPQDest.push({
-        row: destRowColumn.row,
-        column: destRowColumn.column,
-        f_val: getHeuristic(destRowColumn, sourceRowColumn),
-    });
+//     const minPQSource = new PriorityQueue(comparatorAStarPriorityQueue);
+//     const minPQDest = new PriorityQueue(comparatorAStarPriorityQueue);
 
-    while (!minPQSource.isEmpty() && !minPQDest.isEmpty()) {
-        if (!minPQSource.isEmpty()) {
-            let u = minPQSource.pop();
+//     minPQSource.push({
+//         row: sourceRowColumn.row,
+//         column: sourceRowColumn.column,
+//         f_val: 0 + getHeuristic(sourceRowColumn, destRowColumn),
+//     });
+//     minPQDest.push({
+//         row: destRowColumn.row,
+//         column: destRowColumn.column,
+//         f_val: getHeuristic(destRowColumn, sourceRowColumn),
+//     });
 
-            let { row: i, column: j } = u;
+//     while (!minPQSource.isEmpty() && !minPQDest.isEmpty()) {
+//         if (!minPQSource.isEmpty()) {
+//             let u = minPQSource.pop();
 
-            if (visitedSource[i][j]) continue;
+//             let { row: i, column: j } = u;
 
-            visitedSource[i][j] = true;
-            visitedCellVisualize(gridDiv[i][j]);
+//             if (visitedSource[i][j]) continue;
 
-            if (areRowColumnObjectsEqual({ row: i, column: j }, destRowColumn))
-                return {
-                    destFound: true,
-                    parentSource: parentSource,
-                    parentDest: parentDest,
-                    meetingPoint: { row: i, column: j },
-                    totalCost: distanceSource[i][j] + distanceDest[i][j],
-                };
+//             visitedSource[i][j] = true;
+//             visitedCellVisualize(gridDiv[i][j]);
 
-            if (visitedDest[i][j])
-                return {
-                    destFound: true,
-                    parentSource: parentSource,
-                    parentDest: parentDest,
-                    meetingPoint: { row: i, column: j },
-                    totalCost: distanceSource[i][j] + distanceDest[i][j],
-                };
+//             if (areRowColumnObjectsEqual({ row: i, column: j }, destRowColumn))
+//                 return {
+//                     destFound: true,
+//                     parentSource: parentSource,
+//                     parentDest: parentDest,
+//                     meetingPoint: { row: i, column: j },
+//                     totalCost: distanceSource[i][j] + distanceDest[i][j],
+//                 };
 
-            //*relaxation
-            for (let k = 0; k < directions.length; k++) {
-                let x = i + directions[k][0];
-                let y = j + directions[k][1];
+//             if (visitedDest[i][j])
+//                 return {
+//                     destFound: true,
+//                     parentSource: parentSource,
+//                     parentDest: parentDest,
+//                     meetingPoint: { row: i, column: j },
+//                     totalCost: distanceSource[i][j] + distanceDest[i][j],
+//                 };
 
-                if (isSafe(x, y)) {
-                    let newDist = distanceSource[i][j] + getWeight(x, y);
+//             //*relaxation
+//             for (let k = 0; k < directions.length; k++) {
+//                 let x = i + directions[k][0];
+//                 let y = j + directions[k][1];
 
-                    if (!isCellBlocked(gridDiv[x][y]) && !visitedSource[x][y]) {
-                        if (newDist < distanceSource[x][y]) {
-                            parentSource[x][y] = { row: i, column: j };
-                            distanceSource[x][y] = newDist;
-                            // console.log(`emqueued : (${x} , ${y})`);
+//                 if (isSafe(x, y)) {
+//                     let newDist = distanceSource[i][j] + getWeight(x, y);
 
-                            let newEstimatedDistance =
-                                distanceSource[x][y] +
-                                getHeuristic(
-                                    { row: x, column: y },
-                                    destRowColumn
-                                );
+//                     if (!isCellBlocked(gridDiv[x][y]) && !visitedSource[x][y]) {
+//                         if (newDist < distanceSource[x][y]) {
+//                             parentSource[x][y] = { row: i, column: j };
+//                             distanceSource[x][y] = newDist;
+//                             // console.log(`emqueued : (${x} , ${y})`);
 
-                            let v = {
-                                row: x,
-                                column: y,
-                                f_val: newEstimatedDistance,
-                            };
+//                             let newEstimatedDistance =
+//                                 distanceSource[x][y] +
+//                                 getHeuristic(
+//                                     { row: x, column: y },
+//                                     destRowColumn
+//                                 );
 
-                            minPQSource.push(v);
-                            enqueuedCellVisualize(gridDiv[x][y]);
-                        }
-                    }
-                }
-            }
-        }
+//                             let v = {
+//                                 row: x,
+//                                 column: y,
+//                                 f_val: newEstimatedDistance,
+//                             };
 
-        if (!minPQDest.isEmpty()) {
-            let u = minPQDest.pop();
+//                             minPQSource.push(v);
+//                             enqueuedCellVisualize(gridDiv[x][y]);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
 
-            let { row: i, column: j } = u;
+//         if (!minPQDest.isEmpty()) {
+//             let u = minPQDest.pop();
 
-            if (visitedDest[i][j]) continue;
+//             let { row: i, column: j } = u;
 
-            visitedDest[i][j] = true;
-            visitedCellVisualize(gridDiv[i][j]);
+//             if (visitedDest[i][j]) continue;
 
-            if (
-                areRowColumnObjectsEqual({ row: i, column: j }, sourceRowColumn)
-            )
-                return {
-                    destFound: true,
-                    parentSource: parentSource,
-                    parentDest: parentDest,
-                    meetingPoint: { row: i, column: j },
-                    totalCost: distanceSource[i][j] + distanceDest[i][j],
-                };
+//             visitedDest[i][j] = true;
+//             visitedCellVisualize(gridDiv[i][j]);
 
-            if (visitedSource[i][j])
-                return {
-                    destFound: true,
-                    parentSource: parentSource,
-                    parentDest: parentDest,
-                    meetingPoint: { row: i, column: j },
-                    totalCost: distanceSource[i][j] + distanceDest[i][j],
-                };
+//             if (
+//                 areRowColumnObjectsEqual({ row: i, column: j }, sourceRowColumn)
+//             )
+//                 return {
+//                     destFound: true,
+//                     parentSource: parentSource,
+//                     parentDest: parentDest,
+//                     meetingPoint: { row: i, column: j },
+//                     totalCost: distanceSource[i][j] + distanceDest[i][j],
+//                 };
 
-            //*relaxation
-            for (let k = 0; k < directions.length; k++) {
-                let x = i + directions[k][0];
-                let y = j + directions[k][1];
+//             if (visitedSource[i][j])
+//                 return {
+//                     destFound: true,
+//                     parentSource: parentSource,
+//                     parentDest: parentDest,
+//                     meetingPoint: { row: i, column: j },
+//                     totalCost: distanceSource[i][j] + distanceDest[i][j],
+//                 };
 
-                if (isSafe(x, y)) {
-                    let newDist = distanceDest[i][j] + getWeight(x, y);
+//             //*relaxation
+//             for (let k = 0; k < directions.length; k++) {
+//                 let x = i + directions[k][0];
+//                 let y = j + directions[k][1];
 
-                    if (!isCellBlocked(gridDiv[x][y]) && !visitedDest[x][y]) {
-                        if (newDist < distanceDest[x][y]) {
-                            parentDest[x][y] = { row: i, column: j };
-                            distanceDest[x][y] = newDist;
-                            // console.log(`emqueued : (${x} , ${y})`);
+//                 if (isSafe(x, y)) {
+//                     let newDist = distanceDest[i][j] + getWeight(x, y);
 
-                            let newEstimatedDistance =
-                                distanceDest[x][y] +
-                                getHeuristic(
-                                    { row: x, column: y },
-                                    sourceRowColumn
-                                );
+//                     if (!isCellBlocked(gridDiv[x][y]) && !visitedDest[x][y]) {
+//                         if (newDist < distanceDest[x][y]) {
+//                             parentDest[x][y] = { row: i, column: j };
+//                             distanceDest[x][y] = newDist;
+//                             // console.log(`emqueued : (${x} , ${y})`);
 
-                            let v = {
-                                row: x,
-                                column: y,
-                                f_val: newEstimatedDistance,
-                            };
+//                             let newEstimatedDistance =
+//                                 distanceDest[x][y] +
+//                                 getHeuristic(
+//                                     { row: x, column: y },
+//                                     sourceRowColumn
+//                                 );
 
-                            minPQDest.push(v);
-                            enqueuedCellVisualize(gridDiv[x][y]);
-                        }
-                    }
-                }
-            }
-        }
-    }
+//                             let v = {
+//                                 row: x,
+//                                 column: y,
+//                                 f_val: newEstimatedDistance,
+//                             };
 
-    return { destFound: false, parent: parent };
+//                             minPQDest.push(v);
+//                             enqueuedCellVisualize(gridDiv[x][y]);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //*Helper function definitions:
+//     return { destFound: false, parent: parent };
 
-    function getWeight(i, j) {
-        if (
-            gridVal[i][j] === emptyCellVal ||
-            gridVal[i][j] === sourceCellVal ||
-            gridVal[i][j] === destCellVal
-        )
-            return 1;
-        else return Number(gridVal[i][j]);
-    }
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //
+//     //*Helper function definitions:
 
-    function getHeuristic(sourceRowColumn, destRowColumn) {
-        return (
-            Math.abs(sourceRowColumn.row - destRowColumn.row) +
-            Math.abs(sourceRowColumn.column - destRowColumn.column)
-        );
-    }
+//     function getWeight(i, j) {
+//         if (
+//             gridVal[i][j] === emptyCellVal ||
+//             gridVal[i][j] === sourceCellVal ||
+//             gridVal[i][j] === destCellVal
+//         )
+//             return 1;
+//         else return Number(gridVal[i][j]);
+//     }
 
-    function comparatorAStarPriorityQueue(a, b) {
-        return a.f_val <= b.f_val;
-    }
-}
+//     function getHeuristic(sourceRowColumn, destRowColumn) {
+//         return (
+//             Math.abs(sourceRowColumn.row - destRowColumn.row) +
+//             Math.abs(sourceRowColumn.column - destRowColumn.column)
+//         );
+//     }
+
+//     function comparatorAStarPriorityQueue(a, b) {
+//         return a.f_val <= b.f_val;
+//     }
+// }

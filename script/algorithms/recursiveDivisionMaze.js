@@ -86,6 +86,8 @@ function recursiveDivisionMaze() {
         let subGrid1TopLeft, subGrid1BottomRight;
         let subGrid2TopLeft, subGrid2BottomRight;
 
+        let extraEmptySlotRemaining = 1;
+
         if (direction === "vertical") {
             let emptyCellHasBeenPut = false;
 
@@ -99,6 +101,12 @@ function recursiveDivisionMaze() {
                         makeCellEmpty(gridDiv[i - 1][midColumn]);
 
                     emptyCellHasBeenPut = true;
+                } else if (
+                    extraEmptySlotRemaining > 0 &&
+                    getRandomInt(0, 20) === 1
+                ) {
+                    makeCellEmpty(gridDiv[i][midColumn]);
+                    extraEmptySlotRemaining--;
                 } else {
                     makeCellBlocked(gridDiv[i][midColumn]);
                 }
@@ -127,6 +135,13 @@ function recursiveDivisionMaze() {
                     } else if (j - 1 >= y1)
                         makeCellEmpty(gridDiv[midRow][j - 1]);
                     emptyCellHasBeenPut = true;
+                } else if (
+                    extraEmptySlotRemaining > 0 &&
+                    getRandomInt(0, 20) === 1
+                ) {
+                    makeCellEmpty(gridDiv[midRow][j]);
+
+                    extraEmptySlotRemaining--;
                 } else {
                     makeCellBlocked(gridDiv[midRow][j]);
                 }
