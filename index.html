@@ -1,255 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/buttonStyles.css">
-    <link rel="stylesheet" href="css/animation.css">
-    <link rel="stylesheet" href="css/socialMedia.css">
-    <link rel="stylesheet" href="css/legend.css">
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/buttonStyles.css" />
+        <link rel="stylesheet" href="css/animation.css" />
+        <link rel="stylesheet" href="css/socialMedia.css" />
+        <link rel="stylesheet" href="css/legend.css" />
 
-    <title>Graph Path Finding Visualizer</title>
-    <link rel="shortcut icon" type="image/jpg" href="media/sedcat.png" />
+        <title>Graph Path Finding Visualizer</title>
+        <link rel="shortcut icon" type="image/jpg" href="media/sedcat.png" />
+    </head>
+    <body>
+        <div class="mainContainer">
+            <div class="headerContainer">
+                <h1 id="header">Graph Path Finding Visualizer</h1>
 
-</head>
-<body>
+                <div class="inputContainer">
+                    <div id="gridSizeInputContainer">
+                        <p>Grid Size :</p>
+                        <input
+                            type="range"
+                            class="canBeDisabled"
+                            id="gridSizeInput"
+                            min="5"
+                            max="50"
+                            step="1"
+                            value="35"
+                        />
+                    </div>
 
-<div class="mainContainer">
-
-    <div class="headerContainer">
-        <h1 id = "header">Graph Path Finding Visualizer</h1>
-
-        <div class="inputContainer">
-            <div id="gridSizeInputContainer">
-                <p>Grid Size : </p>
-                <input type="range" class="canBeDisabled" id="gridSizeInput" min=5 max=50 step=1 value=35>
-            </div>
-
-            <div id="speedInputContainer">
-                <p>Speed : </p>
-                <input type="range" class="canBeDisabled" id="speedInput" min=1 max=50 step=1 value=30>
-            </div>
-
-        </div>
-
-
-        
-        <div class="socialMediaDiv">
-            <img src="media/githubIcon.png" class="socialMediaIcon"  id = "githubIcon" alt="githubIcon" >
-            <img src="media/linkedInIcon.png" class="socialMediaIcon" id = "linkedInIcon" alt="linkedInIcon">
-        </div>
-
-
-
-    </div>
-    
-    <div class="bodyContainer">
-    
-        <div class="buttonSidebarContainer">
-            <!-- <p>Button sidebar container</p> -->
-
-            <div class=" button canBeDisabled  "  id="findPathButton">Find Path</div>
-
-         
-
-
-            <div id="selectAlgorithmButton" class = "dropdownButtonContainer">
-                
-                            <div class=" button canBeDisabled">Select Algorithm</div>
-                            <ul class="dropdown hiddenDropdown" id = "selectAlgorithmDropdown">
-                                <div class="dropdown-item" id = "BFS_BUTTON">BFS</div>
-                                <div class="dropdown-item" id = "DFS_BUTTON">DFS</div>
-                                <div class="dropdown-item" id = "DIJKSTRA_BUTTON">Dijkstra</div>
-                                <div class="dropdown-item" id="GREEDY_BEST_FIRST_SEARCH_BUTTON">Greedy Best First Search</div>
-                                <div class="dropdown-item" id = "A_STAR_BUTTON">A Star</div>
-                                <div class="dropdown-item" id="BIDIRECTIONAL_BFS_BUTTON">Bidirectional BFS</div>
-                                <div class="dropdown-item" id="BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON">Bidirectional Greedy Best First Search</div>
-                                <!-- <div class="dropdown-item" id="BIDIRECTIONAL_A_STAR_BUTTON">Bidirectional A Star</div> -->
-
-
-                            </ul>
-            </div>
-
-
-            <div id="selectMazeButton" class="dropdownButtonContainer">
-                <div class="button canBeDisabled">
-                    Generate Maze
+                    <div id="speedInputContainer">
+                        <p>Speed :</p>
+                        <input
+                            type="range"
+                            class="canBeDisabled"
+                            id="speedInput"
+                            min="1"
+                            max="50"
+                            step="1"
+                            value="30"
+                        />
+                    </div>
                 </div>
-                <ul class="dropdown hiddenDropdown" id="generateMazeDropdown">
-                    <div class="dropdown-item" id="simpleRandomMaze">Simple Random Maze</div>
-                    <div class="dropdown-item" id="recursiveDivisionMaze">Recursive Division Maze</div>
-                    <!-- <div class="dropdown-item">Maze 3</div>
+
+                <div class="socialMediaDiv">
+                    <img
+                        src="media/githubIcon.png"
+                        class="socialMediaIcon"
+                        id="githubIcon"
+                        alt="githubIcon"
+                    />
+                    <img
+                        src="media/linkedInIcon.png"
+                        class="socialMediaIcon"
+                        id="linkedInIcon"
+                        alt="linkedInIcon"
+                    />
+                </div>
+            </div>
+
+            <div class="bodyContainer">
+                <div class="buttonSidebarContainer">
+                    <!-- <p>Button sidebar container</p> -->
+
+                    <div class="button canBeDisabled" id="findPathButton">
+                        Find Path
+                    </div>
+
+                    <div
+                        id="selectAlgorithmButton"
+                        class="dropdownButtonContainer"
+                    >
+                        <div class="button canBeDisabled">Select Algorithm</div>
+                        <ul
+                            class="dropdown hiddenDropdown"
+                            id="selectAlgorithmDropdown"
+                        >
+                            <div class="dropdown-item" id="BFS_BUTTON">BFS</div>
+                            <div class="dropdown-item" id="DFS_BUTTON">DFS</div>
+                            <div class="dropdown-item" id="DIJKSTRA_BUTTON">
+                                Dijkstra
+                            </div>
+                            <div
+                                class="dropdown-item"
+                                id="GREEDY_BEST_FIRST_SEARCH_BUTTON"
+                            >
+                                Greedy Best First Search
+                            </div>
+                            <div class="dropdown-item" id="A_STAR_BUTTON">
+                                A Star
+                            </div>
+                            <div
+                                class="dropdown-item"
+                                id="BIDIRECTIONAL_BFS_BUTTON"
+                            >
+                                Bidirectional BFS
+                            </div>
+                            <div
+                                class="dropdown-item"
+                                id="BIDIRECTIONAL_GREEDY_BEST_FIRST_SEARCH_BUTTON"
+                            >
+                                Bidirectional Greedy Best First Search
+                            </div>
+                            <!-- <div class="dropdown-item" id="BIDIRECTIONAL_A_STAR_BUTTON">Bidirectional A Star</div> -->
+                        </ul>
+                    </div>
+
+                    <div id="selectMazeButton" class="dropdownButtonContainer">
+                        <div class="button canBeDisabled">Generate Maze</div>
+                        <ul
+                            class="dropdown hiddenDropdown"
+                            id="generateMazeDropdown"
+                        >
+                            <div class="dropdown-item" id="simpleRandomMaze">
+                                Simple Random Maze
+                            </div>
+                            <div
+                                class="dropdown-item"
+                                id="recursiveDivisionMaze"
+                            >
+                                Recursive Division Maze
+                            </div>
+                            <!-- <div class="dropdown-item">Maze 3</div>
                                 <div class="dropdown-item">Maze 4</div> -->
-                </ul>
-            </div>
+                        </ul>
+                    </div>
 
+                    <div class="button" id="resetButton">Reset</div>
 
-            <div class="button " id="resetButton">Reset</div>
+                    <div
+                        class="button canBeDisabled canBeEnabledWithoutReset"
+                        id="clearPathButton"
+                    >
+                        Clear Path
+                    </div>
 
-            <div class=" button  canBeDisabled canBeEnabledWithoutReset" id="clearPathButton">Clear Path</div>
+                    <div class="button canBeDisabled" id="clearWallsButton">
+                        Clear Walls
+                    </div>
 
-            <div class=" button  canBeDisabled " id="clearWallsButton">Clear Walls</div>
+                    <div class="statusContainer">
+                        <p id="statusHeader">Status:</p>
+                        <p id="statusText">Chilling</p>
 
+                        <div class="statusImageContainer">
+                            <img
+                                id="pathFoundImage"
+                                class="statusImage hidden"
+                                src="media/sedcat.png"
+                                alt=""
+                            />
 
+                            <!-- <img id = "pathNotFoundImage" class="statusImage hidden" src="media/crying.gif" alt=""> -->
 
-
-
-            <div class="statusContainer">
-                <p id="statusHeader">Status:</p>
-                <p id="statusText">Chilling</p>
-
-                <div class="statusImageContainer">
-                    <img id = "pathFoundImage" class="statusImage hidden" src="media/sedcat.png" alt="">
-
-                    <img id = "pathNotFoundImage" class="statusImage hidden" src="media/crying.gif" alt="">
-
-                    <img id="algorithmNotSelectedImage" class="statusImage hidden" src="media/pizzacat.jpg" alt="">
-
-
+                            <img
+                                id="algorithmNotSelectedImage"
+                                class="statusImage hidden"
+                                src="media/pizzacat.jpg"
+                                alt=""
+                            />
+                        </div>
+                    </div>
                 </div>
-                
 
-            </div>
+                <div class="gridOuterContainer">
+                    <div class="detailsContainer">
+                        <p id="detailText">Select an algorithm :)</p>
 
-        </div>
+                        <img
+                            src="media/linkinparklogo.png"
+                            alt="legendLogo"
+                            id="legendButton"
+                        />
+                    </div>
 
-
-
-
-    
-        <div class="gridOuterContainer">
-    
-    
-                <div class="detailsContainer">
-                    <p id = "detailText">Select an algorithm :)</p>
-
-                    <img src="media/linkinparklogo.png" alt="legendLogo" id = "legendButton">
+                    <div class="gridContainer">
+                        <table class="gridTable"></table>
+                    </div>
                 </div>
-    
-    
-                <div class="gridContainer">
-                    <table class="gridTable">
-                    </table>
+            </div>
+        </div>
+
+        <div class="legendContainer hidden">
+            <h1 class="legendHeader">
+                <p>Legend</p>
+                <div class="cross" id="crossButtonLegend">✖</div>
+            </h1>
+
+            <div class="legendIconContainer">
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="visitedCellIcon"></div>
+                    </div>
+                    <div class="name">Visited Cell</div>
                 </div>
-    
-    
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="emptyCellIcon"></div>
+                    </div>
+                    <div class="name">Empty Cell</div>
+                </div>
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="enqueuedCellIcon"></div>
+                    </div>
+                    <div class="name">Enqueued Cell</div>
+                </div>
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="blockedCellIcon"></div>
+                    </div>
+                    <div class="name">Blocked Cell</div>
+                </div>
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="sourceCellIcon"></div>
+                    </div>
+                    <div class="name">Source Cell</div>
+                </div>
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="destCellIcon"></div>
+                    </div>
+                    <div class="name">Destination Cell</div>
+                </div>
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon" id="pathCellIcon"></div>
+                    </div>
+                    <div class="name">Path Cell</div>
+                </div>
+
+                <div class="legendElement">
+                    <div class="iconContainer">
+                        <div class="icon">
+                            <img
+                                id="legendIconLinkinPark"
+                                src="media/linkinparklogo.png"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                    <div class="name">Legend</div>
+                </div>
+            </div>
         </div>
 
-        
-    </div>
+        <div class="overlay hidden"></div>
 
+        <script src="script/handleDropdown.js"></script>
+        <script src="script/dataStructures/linkedList.js"></script>
+        <script src="script/dataStructures/queue.js"></script>
+        <script src="script/dataStructures/priorityQueue.js"></script>
 
-    
-</div>
+        <script src="script/helperFunctions.js"></script>
+        <script src="script/visualize/visualize.js"></script>
+        <script src="script/algorithms/visualizePath.js"></script>
+        <script src="script/main.js"></script>
+        <script src="script/handleButton.js"></script>
+        <script src="script/algorithms/bfsFindPath.js"></script>
+        <script src="script/algorithms/dfsFindPath.js"></script>
+        <script src="script/algorithms/dijkstraFindPath.js"></script>
+        <script src="script/algorithms/aStarFindPath.js"></script>
+        <script src="script/algorithms/greedyBestFirstSearch.js"></script>
+        <script src="script/algorithms/bidirectionalBFSFindPath.js"></script>
+        <script src="script/algorithms/bidirectionalGreedyBestFirstSearch.js"></script>
+        <script src="script/algorithms/bidirectionalAStarFindPath.js"></script>
 
+        <script src="script/algorithms/simpleRandomMaze.js"></script>
+        <script src="script/algorithms/recursiveDivisionMaze.js"></script>
 
-
-
-
-
-<div class="legendContainer hidden">
-
-    <h1 class="legendHeader"> <p>Legend </p>  <div class="cross" id ="crossButtonLegend">✖</div> </h1>
-
-
-
-
-    <div class="legendIconContainer">
-
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" id="visitedCellIcon"></div>
-            </div>
-            <div class="name">Visited Cell</div>
-        </div>
-
-        <div class="legendElement">
-        
-            <div class="iconContainer">
-                <div class="icon" id="emptyCellIcon"></div>
-            </div>
-            <div class="name">Empty Cell</div>
-        </div>
-
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" id="enqueuedCellIcon"></div>
-            </div>
-            <div class="name">Enqueued Cell</div>
-        </div>     
-                
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" id="blockedCellIcon"></div>
-            </div>
-            <div class="name">Blocked Cell</div>
-        </div>
-
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" id="sourceCellIcon"></div>
-            </div>
-            <div class="name">Source Cell</div>
-        </div>
-
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" id="destCellIcon"></div>
-            </div>
-            <div class="name">Destination Cell</div>
-        </div>
-
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" id="pathCellIcon"></div>
-            </div>
-            <div class="name">Path Cell</div>
-        </div>
-
-        <div class="legendElement">
-            <div class="iconContainer">
-                <div class="icon" ><img id="legendIconLinkinPark" src="media/linkinparklogo.png" alt=""></div>
-            </div>
-            <div class="name">Legend</div>
-        </div>
-
-    </div>
-
-</div>
-
-<div class="overlay  hidden"></div>
-
-
-
-    <script src="script/handleDropdown.js"></script>
-    <script src="script/dataStructures/linkedList.js"></script>
-    <script src="script/dataStructures/queue.js"></script>
-    <script src="script/dataStructures/priorityQueue.js"></script>
-
-    <script src="script/helperFunctions.js"></script>
-    <script src="script/visualize/visualize.js"></script>
-    <script src="script/algorithms/visualizePath.js"></script>
-    <script src="script/main.js"></script>
-    <script src="script/handleButton.js"></script>
-    <script src="script/algorithms/bfsFindPath.js"></script>
-    <script src="script/algorithms/dfsFindPath.js"></script>
-    <script src="script/algorithms/dijkstraFindPath.js"></script>
-    <script src="script/algorithms/aStarFindPath.js"></script>
-    <script src="script/algorithms/greedyBestFirstSearch.js"></script>
-    <script src="script/algorithms/bidirectionalBFSFindPath.js"></script>
-    <script src="script/algorithms/bidirectionalGreedyBestFirstSearch.js"></script>
-    <script src="script/algorithms/bidirectionalAStarFindPath.js"></script>
-
-
-    <script src="script/algorithms/simpleRandomMaze.js"></script>
-    <script src="script/algorithms/recursiveDivisionMaze.js"></script>
-
-
-    <script src="script/socialMediaIcon.js"></script>
-    <script src="script/handleLegendPopup.js"></script>
-
-</body>
+        <script src="script/socialMediaIcon.js"></script>
+        <script src="script/handleLegendPopup.js"></script>
+    </body>
 </html>
