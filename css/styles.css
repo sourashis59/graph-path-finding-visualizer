@@ -139,22 +139,23 @@ body {
 }
 
 #legendButton {
-    position: absolute;
+    /* position: absolute; */
     right: 2vw;
-    height: 150%;
-    width: auto;
-
+    height: 100%;
+    width: 10rem;
     margin-right: 2%;
 
     /* transition: 500ms transform; */
-
-    border-radius: 50%;
+    background-color: rgb(187, 130, 239);
+    color: white;
+    border-radius: 10%;
 }
 
 #legendButton:hover {
     cursor: pointer;
-    animation: rotateIconAnimation 1.5s linear infinite;
+    /* animation: rotateIconAnimation 1.5s linear infinite; */
     background-color: blueviolet;
+    color:white;
     box-shadow: 0 0 60px 0 rgb(0, 225, 255);
 }
 

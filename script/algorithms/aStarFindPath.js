@@ -26,12 +26,8 @@ function A_STAR_FindPath() {
     });
 
     while (!minPQ.isEmpty()) {
-        let u = minPQ.pop();
-
-        let { row: i, column: j } = u;
-
+        let { row: i, column: j } = minPQ.pop();
         if (visited[i][j]) continue;
-
         if (areRowColumnObjectsEqual({ row: i, column: j }, destRowColumn))
             return {
                 destFound: true,
@@ -41,58 +37,34 @@ function A_STAR_FindPath() {
 
         visited[i][j] = true;
         visitedCellVisualize(gridDiv[i][j]);
-
         //*relaxation
         for (let k = 0; k < directions.length; k++) {
             let x = i + directions[k][0];
             let y = j + directions[k][1];
+            if (!isSafe(x, y) || isCellBlocked(gridDiv[x][y]) || visited[x][y]) 
+                continue;
 
-            if (isSafe(x, y)) {
-                let newDist = distance[i][j] + getWeight(x, y);
-
-                if (!isCellBlocked(gridDiv[x][y]) && !visited[x][y]) {
-                    if (newDist < distance[x][y]) {
-                        parent[x][y] = { row: i, column: j };
-                        distance[x][y] = newDist;
-                        // console.log(`emqueued : (${x} , ${y})`);
-
-                        let newEstimatedDistance =
-                            distance[x][y] + getHeuristic(x, y);
-
-                        let v = {
-                            row: x,
-                            column: y,
-                            f_val: newEstimatedDistance,
-                        };
-
-                        minPQ.push(v);
-                        enqueuedCellVisualize(gridDiv[x][y]);
-                    }
-                }
-            }
+            let newDist = distance[i][j] + getWeight(x, y);
+            if (newDist < distance[x][y]) {
+                parent[x][y] = { row: i, column: j };
+                distance[x][y] = newDist;
+                // console.log(`emqueued : (${x} , ${y})`);
+                let newEstimatedDistance = distance[x][y] + getHeuristic(x, y);
+                let v = {
+                    row: x,
+                    column: y,
+                    f_val: newEstimatedDistance,
+                };
+                minPQ.push(v);
+                enqueuedCellVisualize(gridDiv[x][y]);
+            }            
         }
     }
 
     return { destFound: false, parent: parent };
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //*HElper function definitions:
+    
 
+    //*HElper function definitions:
     function getWeight(i, j) {
         if (
             gridVal[i][j] === emptyCellVal ||
